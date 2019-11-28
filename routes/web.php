@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', "HomeController@index");
+
+/*
+Route::get("/Eleves", "ElevesController@index");
+
+Route::get("/produit/{id}", function($id){
+    return "Je suis le produit $id";
 });
+
+Route::get("/Eleves/{id}", "ElevesController@show");
+
+*/
