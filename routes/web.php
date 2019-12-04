@@ -23,3 +23,25 @@ Route::get("/produit/{id}", function($id){
 Route::get("/Eleves/{id}", "ElevesController@show");
 
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get("/employees", "EmployeesController@index");
+
+Route::get('/parents', 'ParentsController@index');
+
+Route::get('/students', 'StudentsController@index');
+
+Route::get('/employees/save', 'EmployeesController@create_employees')->name('create_employee');
+
+Route::resource('/employees', 'EmployeesController');
+
+Route::patch("/employee/modifier/{id}", "EmployeesController@update")->name('update_employee');
+
+Route::resource('parents', 'ParentsController');
+
+Route::resource('students', 'StudentsController');
+
+
+Route::get('/home', 'HomeController@index')->name('home');
