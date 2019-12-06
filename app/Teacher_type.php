@@ -12,3 +12,7 @@ class Teacher_type extends Model
         return $this->belongsTo("App\Professors");
     }
 }
+
+
+
+

@@ -75,8 +75,8 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $employe = \App\Employee::find($id);
-         return view('employees.modifier', compact('employee'));
+        $employees = \App\Employee::find($id);
+        return  view('employees.modifier', compact('employees'));
 
     }
 
@@ -92,16 +92,16 @@ class EmployeesController extends Controller
         $employee = \App\Employee::find($id);
         if($employee){
             $employee->update([
-                'name'=>$request->input('name');
-                'first_name'->$request->input('first_name');
-                'civility'=>$request->input('civility');
-                'year_birth'=>$request->input('year_birth');
-                'Birth_Place'=>$request->input('Birth_Place');
-                'Marital_status'=>$request->input('Marital_status');
-                'status'=>$request->input('status');
-                'address'=>$request->input('address');
-                'phone'=>$request->input('phone');
-                'email'=>$request->input('email');
+                'name'=>$request->input('name'),
+                'first_name'=>$request->input('first_name'),
+                'civility'=>$request->input('civility'),
+                'year_birth'=>$request->input('year_birth'),
+                'Birth_Place'=>$request->input('Birth_Place'),
+                'Marital_status'=>$request->input('Marital_status'),
+                'status'=>$request->input('status'),
+                'address'=>$request->input('address'),
+                'phone'=>$request->input('phone'),
+                'email'=>$request->input('email'),
            ]);
         }
         return redirect()->back();

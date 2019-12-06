@@ -5724,7 +5724,7 @@ __webpack_require__.r(__webpack_exports__);
         $link.addClass(ClassName$8.ACTIVE);
       } else {
         // Set triggered link as active
-        $link.addClass(ClassName$8.ACTIVE); // Set triggered links parents as active
+        $link.addClass(ClassName$8.ACTIVE); // Set triggered links parent_students as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
 
         $link.parents(Selector$8.NAV_LIST_GROUP).prev(Selector$8.NAV_LINKS + ", " + Selector$8.LIST_ITEMS).addClass(ClassName$8.ACTIVE); // Handle special case when .nav-link is inside .nav-item
@@ -9539,7 +9539,7 @@ jQuery.each( {
 				jQuery.uniqueSort( matched );
 			}
 
-			// Reverse order for parents* and prev-derivatives
+			// Reverse order for parent_students* and prev-derivatives
 			if ( rparentsprev.test( name ) ) {
 				matched.reverse();
 			}
@@ -35120,7 +35120,7 @@ function setupEventListeners(reference, options, state, updateBound) {
   state.updateBound = updateBound;
   getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
 
-  // Scroll event listener on scroll parents
+  // Scroll event listener on scroll parent_students
   var scrollElement = getScrollParent(reference);
   attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
   state.scrollElement = scrollElement;
@@ -35151,7 +35151,7 @@ function removeEventListeners(reference, state) {
   // Remove resize event listener on window
   getWindow(reference).removeEventListener('resize', state.updateBound);
 
-  // Remove scroll event listener on scroll parents
+  // Remove scroll event listener on scroll parent_students
   state.scrollParents.forEach(function (target) {
     target.removeEventListener('scroll', state.updateBound);
   });
@@ -35298,7 +35298,7 @@ function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
  * as well on High DPI screens).
  *
  * Firefox prefers no rounding for positioning and does not have blurriness on
- * high DPI screens.
+ * student DPI screens.
  *
  * Only horizontal placement and left/right values need to be considered.
  */
@@ -36639,7 +36639,7 @@ var Popper = function () {
      *
      * **DEPRECATION**: This way to access PopperUtils is deprecated
      * and will be removed in v2! Use the PopperUtils module directly instead.
-     * Due to the high instability of the methods contained in Utils, we can't
+     * Due to the student instability of the methods contained in Utils, we can't
      * guarantee them to follow semver. Use them at your own risk!
      * @static
      * @private
@@ -39237,7 +39237,7 @@ function flushCallbacks () {
 // that cannot be circumvented (e.g. #7109, #7153, #7546, #7834, #8109).
 // So we now use microtasks everywhere, again.
 // A major drawback of this tradeoff is that there are some scenarios
-// where microtasks have too high a priority and fire in between supposedly
+// where microtasks have too student a priority and fire in between supposedly
 // sequential events (e.g. #4521, #6690, which have workarounds)
 // or even between bubbling of the same event (#6566).
 var timerFunc;
@@ -49446,7 +49446,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49466,7 +49466,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

@@ -25,7 +25,7 @@ class ProfessorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('professors.create');
     }
 
     /**
@@ -36,7 +36,19 @@ class ProfessorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $professor = new Professor();
+        $professor->name = $request->input('name');
+        $professor->first_name = $request->input('first_name');
+        $professor->civility = $request->input('civility');
+        $professor->year_birth = $request->input('year_birth');
+        $professor->Birth_Place = $request->input('Birth_Place');
+        $professor->Marital_status = $request->input('Marital_status');
+        $professor->status = $request->input('status');
+        $professor->address = $request->input('address');
+        $professor->phone = $request->input('phone');
+        $professor->email = $request->input('email');
+        $professor->save();
+        return redirect('/');
     }
 
     /**
@@ -58,7 +70,9 @@ class ProfessorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $professors = \App\Professor::find($id);
+        return  view('professors.modifier', compact('professors'));
+
     }
 
     /**
@@ -70,7 +84,22 @@ class ProfessorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $professor = \App\Professor::find($id);
+        if($professor){
+            $professor->update([
+                'name'=>$request->input('name'),
+                'first_name'=>$request->input('first_name'),
+                'civility'=>$request->input('civility'),
+                'year_birth'=>$request->input('year_birth'),
+                'Birth_Place'=>$request->input('Birth_Place'),
+                'Marital_status'=>$request->input('Marital_status'),
+                'status'=>$request->input('status'),
+                'address'=>$request->input('address'),
+                'phone'=>$request->input('phone'),
+                'email'=>$request->input('email'),
+            ]);
+        }
+        return redirect()->back();
     }
 
     /**

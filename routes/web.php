@@ -29,17 +29,29 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get("/employees", "EmployeesController@index");
 
-Route::get('/parents', 'ParentsController@index');
+Route::get('/parent_students', 'ParentsController@index');
 
-Route::get('/students', 'StudentsController@index');
+Route::get('/students/save', 'StudentsController@create_student')->name('create_student');
 
 Route::get('/employees/save', 'EmployeesController@create_employees')->name('create_employee');
 
-Route::resource('/employees', 'EmployeesController');
+Route::get('/professors/save', 'ProfessorsController@create_professors')->name('create_professor');
+
+Route::get('/parent_students/save', 'Parent_studentsController@create_parent_student')->name('create_parent_student');
+
+Route::patch('/students/modifier/{id}', 'StudentsController@update')->name('update_student');
 
 Route::patch("/employee/modifier/{id}", "EmployeesController@update")->name('update_employee');
 
-Route::resource('parents', 'ParentsController');
+Route::patch("/professor/modifier/{id}", "ProfessorsController@update")->name('update_professor');
+
+Route::get('/parent_student/modifier/{id}', 'Parent_studentsController@update_parent_student')->name('update_parent_student');
+
+Route::resource('/professors', 'ProfessorsController');
+
+Route::resource('/employees', 'EmployeesController');
+
+Route::resource('parent_students', 'Parent_studentsController');
 
 Route::resource('students', 'StudentsController');
 

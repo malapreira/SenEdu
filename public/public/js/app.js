@@ -5691,7 +5691,7 @@ module.exports = {
         $link.addClass(ClassName$8.ACTIVE);
       } else {
         // Set triggered link as active
-        $link.addClass(ClassName$8.ACTIVE); // Set triggered links parents as active
+        $link.addClass(ClassName$8.ACTIVE); // Set triggered links parent_students as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
 
         $link.parents(Selector$8.NAV_LIST_GROUP).prev(Selector$8.NAV_LINKS + ", " + Selector$8.LIST_ITEMS).addClass(ClassName$8.ACTIVE); // Handle special case when .nav-link is inside .nav-item
@@ -9506,7 +9506,7 @@ jQuery.each( {
 				jQuery.uniqueSort( matched );
 			}
 
-			// Reverse order for parents* and prev-derivatives
+			// Reverse order for parent_students* and prev-derivatives
 			if ( rparentsprev.test( name ) ) {
 				matched.reverse();
 			}
@@ -35087,7 +35087,7 @@ function setupEventListeners(reference, options, state, updateBound) {
   state.updateBound = updateBound;
   getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
 
-  // Scroll event listener on scroll parents
+  // Scroll event listener on scroll parent_students
   var scrollElement = getScrollParent(reference);
   attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
   state.scrollElement = scrollElement;
@@ -35118,7 +35118,7 @@ function removeEventListeners(reference, state) {
   // Remove resize event listener on window
   getWindow(reference).removeEventListener('resize', state.updateBound);
 
-  // Remove scroll event listener on scroll parents
+  // Remove scroll event listener on scroll parent_students
   state.scrollParents.forEach(function (target) {
     target.removeEventListener('scroll', state.updateBound);
   });
@@ -35265,7 +35265,7 @@ function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
  * as well on High DPI screens).
  *
  * Firefox prefers no rounding for positioning and does not have blurriness on
- * high DPI screens.
+ * student DPI screens.
  *
  * Only horizontal placement and left/right values need to be considered.
  */
@@ -36606,7 +36606,7 @@ var Popper = function () {
      *
      * **DEPRECATION**: This way to access PopperUtils is deprecated
      * and will be removed in v2! Use the PopperUtils module directly instead.
-     * Due to the high instability of the methods contained in Utils, we can't
+     * Due to the student instability of the methods contained in Utils, we can't
      * guarantee them to follow semver. Use them at your own risk!
      * @static
      * @private
@@ -37334,9 +37334,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*
   jQuery Ketchup Plugin - Tasty Form Validation
   ---------------------------------------------
-  
+
   Version 0.3.1 - 12. Jan 2011
-  
+
   Copyright (c) 2011 by Sebastian Senf:
     http://mustardamus.com/
     http://usejquery.com/
