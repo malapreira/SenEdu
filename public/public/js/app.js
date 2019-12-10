@@ -17116,7 +17116,7 @@ return jQuery;
   /** Used to match unescaped characters in compiled string literals. */
   var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
 
-  /** Used to compose unicode character classes. */
+  /** Used to compose unicode character classrooms. */
   var rsAstralRange = '\\ud800-\\udfff',
       rsComboMarksRange = '\\u0300-\\u036f',
       reComboHalfMarksRange = '\\ufe20-\\ufe2f',

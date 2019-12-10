@@ -1474,7 +1474,7 @@ S2.define('select2/selection/base',[
   };
 
   BaseSelection.prototype.update = function (data) {
-    throw new Error('The `update` method must be defined in child classes.');
+    throw new Error('The `update` method must be defined in child classrooms.');
   };
 
   return BaseSelection;
@@ -3001,11 +3001,11 @@ S2.define('select2/data/base',[
   Utils.Extend(BaseAdapter, Utils.Observable);
 
   BaseAdapter.prototype.current = function (callback) {
-    throw new Error('The `current` method must be defined in child classes.');
+    throw new Error('The `current` method must be defined in child classrooms.');
   };
 
   BaseAdapter.prototype.query = function (params, callback) {
-    throw new Error('The `query` method must be defined in child classes.');
+    throw new Error('The `query` method must be defined in child classrooms.');
   };
 
   BaseAdapter.prototype.bind = function (container, $container) {
@@ -4180,7 +4180,7 @@ S2.define('select2/dropdown/attachBody',[
   };
 
   AttachBody.prototype.position = function (decorated, $dropdown, $container) {
-    // Clone all of the container classes
+    // Clone all of the container classrooms
     $dropdown.attr('class', $container.attr('class'));
 
     $dropdown.removeClass('select2');
@@ -5666,7 +5666,7 @@ S2.define('select2/compat/utils',[
       classes = '' + classes; // for IE which returns object
 
       $(classes.split(/\s+/)).each(function () {
-        // Save all Select2 classes
+        // Save all Select2 classrooms
         if (this.indexOf('select2-') === 0) {
           replacements.push(this);
         }
@@ -5679,7 +5679,7 @@ S2.define('select2/compat/utils',[
       classes = '' + classes; // for IE which returns object
 
       $(classes.split(/\s+/)).each(function () {
-        // Only adapt non-Select2 classes
+        // Only adapt non-Select2 classrooms
         if (this.indexOf('select2-') !== 0) {
           adapted = adapter(this);
 
@@ -5702,7 +5702,7 @@ S2.define('select2/compat/containerCss',[
   'jquery',
   './utils'
 ], function ($, CompatUtils) {
-  // No-op CSS adapter that discards all classes by default
+  // No-op CSS adapter that discards all classrooms by default
   function _containerAdapter (clazz) {
     return null;
   }
@@ -5759,7 +5759,7 @@ S2.define('select2/compat/dropdownCss',[
   'jquery',
   './utils'
 ], function ($, CompatUtils) {
-  // No-op CSS adapter that discards all classes by default
+  // No-op CSS adapter that discards all classrooms by default
   function _dropdownAdapter (clazz) {
     return null;
   }

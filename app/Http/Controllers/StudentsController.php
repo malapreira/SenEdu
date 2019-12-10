@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,10 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+
+        $parent_students = \App\parent_student::pluck('name','id');
+        return view('students.create', compact('parent_students'));
+
     }
 
     /**
@@ -42,11 +46,10 @@ class StudentsController extends Controller
         $student->civility = $request->input('civility');
         $student->year_birth = $request->input('year_birth');
         $student->Birth_Place = $request->input('Birth_Place');
-        $student->Marital_status = $request->input('Marital_status');
-        $student->status = $request->input('status');
         $student->address = $request->input('address');
         $student->phone = $request->input('phone');
         $student->email = $request->input('email');
+        $student->parent_student_id = $request->input('parent_student_id');
         $student->save();
         return redirect('/');
     }
@@ -70,8 +73,10 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        $students = \App\Parent::find($id);
-        return  view('students.modifier', compact('students'));
+        $student = \App\Student::find($id);
+        $parent_students = \App\parent_student::pluck('name','id');
+        return view('students.edit', compact('student','parent_students'));
+
 
     }
 
@@ -85,22 +90,27 @@ class StudentsController extends Controller
     public function update(Request $request, $id)
     {
         $student= \App\Student::find($id);
-        if($student){
+        if($student) {
             $student->update([
-                'name'=>$request->input('name'),
-                'first_name'=>$request->input('first_name'),
-                'civility'=>$request->input('civility'),
-                'year_birth'=>$request->input('year_birth'),
-                'Birth_Place'=>$request->input('Birth_Place'),
-                'Marital_status'=>$request->input('Marital_status'),
-                'status'=>$request->input('status'),
-                'address'=>$request->input('address'),
-                'phone'=>$request->input('phone'),
-                'email'=>$request->input('email'),
+                'name' => $request->input('name'),
+                'first_name' => $request->input('first_name'),
+                'civility' => $request->input('civility'),
+                'year_birth' => $request->input('year_birth'),
+                'Birth_Place' => $request->input('Birth_Place'),
+                'Marital_status' => $request->input('level'),
+                'status' => $request->input('filiere'),
+                'address' => $request->input('address'),
+                'phone' => $request->input('phone'),
+                'email' => $request->input('email'),
+                'parent_student_id' => $request->input('parent_student_id'),
+
             ]);
         }
+
         return redirect()->back();
+
     }
+
 
     /**
      * Remove the specified resource from storage.

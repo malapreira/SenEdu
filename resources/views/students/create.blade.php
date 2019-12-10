@@ -27,7 +27,7 @@
                 <h2 class="title">Formulaire d'incription</h2>
             </div>
             <div class="card-body">
-                <form action="{{route('students.create')}}" id="formulaire" class="form-group" method="post">
+                <form action="{{route('students.store')}}" id="formulaire" class="form-group" method="post">
                     <div class="form-row">
                         @csrf
                         <div class="name">Nom:</div>
@@ -120,11 +120,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
+                    </div>
+                    <div>
+                        <select name="parent_students_id" id="parent_students_id" class="form-control">
+                            <option value=""></option>
+                            @foreach($parent_students as $key => $value)
+                                <option value="{{$key}}" {{ $key == $student->parent_students_id ? 'selected="selected"':''}}>{{$value}}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
+
                 </form>
             </div>
-            <div class="card-footer">
-                <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
-            </div>
+
         </div>
     </div>
 </div>

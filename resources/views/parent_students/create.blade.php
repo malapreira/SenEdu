@@ -27,7 +27,7 @@
                 <h2 class="title">Formulaire d'incription</h2>
             </div>
             <div class="card-body">
-                <form action="{{route('parent_students.create')}}" id="formulaire" class="form-group" method="post">
+                <form action="{{route('parent_students.store')}}" id="formulaire" class="form-group" method="post">
                     <div class="form-row">
                         @csrf
                         <div class="name">Nom:</div>
@@ -120,11 +120,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
+                    </div>
                 </form>
             </div>
-            <div class="card-footer">
-                <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
-            </div>
+
         </div>
     </div>
 </div>

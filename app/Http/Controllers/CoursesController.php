@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\course;
 use Illuminate\Http\Request;
 
 class CoursesController extends Controller
@@ -13,7 +14,9 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        //
+        $courses = \App\course::orderBy('created_at', 'DESC')->get();
+        return view('courses.index', compact('courses'));
+
     }
 
     /**
@@ -23,7 +26,8 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        //
+        return view('courses.create');
+
     }
 
     /**
@@ -34,7 +38,11 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = new course();
+        $course->name = $request->input('name');
+        $course->description = $request->input('description');
+        $course->save();
+        return redirect('/course');
     }
 
     /**
@@ -56,7 +64,9 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = \App\course::find($id);//on recupere le produit
+        return view('courses.edit', compact('course'));
+
     }
 
     /**
@@ -68,7 +78,15 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = \App\Course::find($id);
+        if($course){
+            $course->update([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+            ]);
+        }
+        return redirect()->back();
+
     }
 
     /**

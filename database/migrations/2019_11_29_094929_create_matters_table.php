@@ -17,7 +17,7 @@ class CreateMattersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',150);
             $table->string('description',150);
-            $table->unsignedInteger('course_id');
+            $table->unsignedInteger('course_id')->nullable();
             $table->timestamps();
         });
     }

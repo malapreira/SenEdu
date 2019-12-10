@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Formulaire d'inscription du personnel</title>
+    <title>Formulaire d'inscription parent d'élève</title>
 
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -27,59 +27,54 @@
                 <h2 class="title">Formulaire d'incription</h2>
             </div>
             <div class="card-body">
-                <form action="{{route('parent_student.store')}}" id="formulaire" class="form-group" method="post">
+                <form action="{{route('employees.store')}}" id="formulaire" class="form-group" method="post">
                     <div class="form-row">
-                        @if($errors->any())
-                            @foreach($errors->all() as $error)
-                                <div class="alert alert-danger">{{$error}}</div>
-                            @endforeach
-                        @endif
                         @csrf
                         <div class="name">Nom:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="name" placeholder="Entrez votre nom">
+                            <input class="input--style-6" type="text" name="full_name" placeholder="Entrez votre nom">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="first_name">Prenom:</div>
+                        <div class="name">Prenom:</div>
                         <div class="value">
                             <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre Prenom">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="year_birth">Date de naissance:</div>
+                        <div class="name">Date de naissance:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="year_birth" placeholder="Entrez votre date de naissance">
+                            <input class="input--style-6" type="text" name="full_name" placeholder="Entrez votre date de naissance">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="Birth_Place">Lieu de naissance:</div>
+                        <div class="name">Lieu de naissance:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="Birth_Place" placeholder="Entrez votre Lieu de naissance">
+                            <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre Lieu de naissance">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="Marital_status">Situation Matrimoniale:</div>
+                        <div class="name">Situation Matrimoniale:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="Marital_status" placeholder="Entrez votre Situation Matrimoniale">
+                            <input class="input--style-6" type="text" name="full_name" placeholder="Entrez votre Situation Matrimoniale">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="status">Statut:</div>
+                        <div class="name">Statut:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="status" placeholder="Entrez votre Statut">
+                            <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre Statut">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="address">Adresse:</div>
+                        <div class="name">Adresse:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="address" placeholder="Entrez votre Adresse">
+                            <input class="input--style-6" type="text" name="full_name" placeholder="Entrez votre Adresse">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="phone">Téléphone:</div>
+                        <div class="name">Téléphone:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="phone" placeholder="Entrez votre numero de téléphone">
+                            <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre numero de téléphone">
                         </div>
                     </div>
                     <div class="form-row">
@@ -107,7 +102,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="civility">Genre:</div>
+                        <div class="name">Genre:</div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="civility" id="civilityF" value="0"/>
                             <label class="form-check-label" for="civilityF">F</label>
@@ -125,11 +120,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
+                    </div>
                 </form>
             </div>
-            <div class="card-footer">
-                <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
-            </div>
+
         </div>
     </div>
 </div>

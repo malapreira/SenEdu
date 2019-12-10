@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Professor;
+use App\Teacher_type;
 use Illuminate\Http\Request;
 
 class ProfessorsController extends Controller
@@ -25,7 +26,9 @@ class ProfessorsController extends Controller
      */
     public function create()
     {
-        return view('professors.create');
+        $teacher_type = Teacher_type::pluck('name','id');
+
+        return view('professors.create',compact('teacher_type'));
     }
 
     /**
@@ -47,6 +50,8 @@ class ProfessorsController extends Controller
         $professor->address = $request->input('address');
         $professor->phone = $request->input('phone');
         $professor->email = $request->input('email');
+        $professor->teacher_type_id = $request->input('teacher_type_id');
+
         $professor->save();
         return redirect('/');
     }
@@ -71,10 +76,10 @@ class ProfessorsController extends Controller
     public function edit($id)
     {
         $professors = \App\Professor::find($id);
-        return  view('professors.modifier', compact('professors'));
+        $teacher_types = \App\Teacher_type::pluck('name','id');
+        return  view('professors.modifier', compact('professors','teacher_type'));
 
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,6 +102,8 @@ class ProfessorsController extends Controller
                 'address'=>$request->input('address'),
                 'phone'=>$request->input('phone'),
                 'email'=>$request->input('email'),
+                'teacher_type_id' => $request->input('teacher_type_id'),
+
             ]);
         }
         return redirect()->back();

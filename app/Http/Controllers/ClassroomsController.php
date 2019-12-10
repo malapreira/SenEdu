@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classroom;
 use Illuminate\Http\Request;
 
 class ClassroomsController extends Controller
@@ -13,7 +14,8 @@ class ClassroomsController extends Controller
      */
     public function index()
     {
-        //
+        $classrooms = \App\Classroom::orderBy('created_at', 'DESC')->get();
+        return view('classrooms.index', compact('classrooms'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ClassroomsController extends Controller
      */
     public function create()
     {
-        //
+        return view('classrooms.create');
     }
 
     /**
@@ -34,7 +36,11 @@ class ClassroomsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $classroom = new Classroom();
+        $classroom->name = $request->input('name');
+        $classroom->description = $request->input('description');
+        $classroom->save();
+        return redirect('/');
     }
 
     /**
@@ -56,7 +62,9 @@ class ClassroomsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $classroom = \App\Classroom::find($id);//on recupere le produit
+        return view('classrooms.edit', compact('classroom'));
+
     }
 
     /**
@@ -68,7 +76,14 @@ class ClassroomsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $classroom = \App\Course::find($id);
+        if($classroom){
+            $classroom->update([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+            ]);
+        }
+        return redirect()->back();
     }
 
     /**

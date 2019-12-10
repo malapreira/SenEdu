@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Parent_student;
+use App\parent_student;
 use Illuminate\Http\Request;
 
 class Parent_studentsController extends Controller
@@ -37,7 +37,7 @@ class Parent_studentsController extends Controller
      */
     public function store(Request $request)
     {
-        $parent_student = new Parent_student();
+        $parent_student = new parent_student();
         $parent_student->name = $request->input('name');
         $parent_student->first_name = $request->input('first_name');
         $parent_student->civility = $request->input('civility');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Matter;
 use Illuminate\Http\Request;
 
 class MattersController extends Controller
@@ -13,7 +14,9 @@ class MattersController extends Controller
      */
     public function index()
     {
-        //
+        $matters = matter::All();
+        $matters = \App\Matter::orderBy('created_at', 'DESC')->get();
+        return view('matters.index', compact('matters'));
     }
 
     /**
@@ -23,7 +26,9 @@ class MattersController extends Controller
      */
     public function create()
     {
-        //
+        $courses = \App\course::pluck('name','id');
+        return view('matters.create', compact('courses'));
+
     }
 
     /**
@@ -34,7 +39,17 @@ class MattersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name'=>'required|min:5',
+            'description' => 'max:1000000'
+        ]);
+
+        $matter = new Matter();
+        $matter->name = $request->input('name');
+        $matter->description = $request->input('description');
+        $matter->course_id = $request->input('course_id');
+        $matter->save();
+        return redirect('/');
     }
 
     /**
@@ -56,7 +71,10 @@ class MattersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $matter = \App\Matter::find($id);
+        $courses = \App\Course::pluck('name','id');
+        return view('matters.edit', compact('matter','courses'));
+
     }
 
     /**
@@ -68,7 +86,16 @@ class MattersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $matter = \App\Matter::find($id);
+        if($matter){
+            $matter->update([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'course_id' => $request->input('course_id'),
+
+        ]);
+        }
+        return redirect()->back();
     }
 
     /**

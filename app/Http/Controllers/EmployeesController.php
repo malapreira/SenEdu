@@ -14,7 +14,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = \App\Employee::orderBy('created_at', 'DESC')->get();
+        $levels = \App\Employee::orderBy('created_at', 'DESC')->get();
         return view('employees.index', compact('employees') );
 
     }

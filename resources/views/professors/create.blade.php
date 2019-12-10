@@ -120,11 +120,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
+                    </div>
+                    <div>
+                        <select name="teacher_type_id" id="teacher_type_id" class="form-control">
+                            <option value=""></option>
+                            @foreach($teacher_type as $key => $value)
+                                <option value="{{$key}}" {{ $key == $professor->teacher_type_id ? 'selected="selected"':''}}>{{$value}}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
                 </form>
             </div>
-            <div class="card-footer">
-                <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
-            </div>
+
+
         </div>
     </div>
 </div>

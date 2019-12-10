@@ -3,7 +3,7 @@
     <div class="container">
             <div id="pseudo_inscription">
                 <div class="row">
-                    <form action="{{route('parent.update',['id'=>$parent->id])}}" method="post" class="form-group">
+                    <form action="{{route('professor.update',['id'=>$professor->id])}}" method="post" class="form-group">
                     @csrf
                     @method('patch')
                     <div class="col-12">

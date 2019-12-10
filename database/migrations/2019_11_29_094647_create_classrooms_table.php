@@ -17,7 +17,7 @@ class CreateClassroomsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',50);
             $table->string('description',100);
-            $table->unsignedInteger('filiere_id');
+            $table->unsignedInteger('filiere_id')->nullable();
             $table->timestamps();
         });
     }

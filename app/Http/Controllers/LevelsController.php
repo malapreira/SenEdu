@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Level;
 use Illuminate\Http\Request;
 
 class LevelsController extends Controller
@@ -13,7 +14,8 @@ class LevelsController extends Controller
      */
     public function index()
     {
-        //
+        $levels = \App\Level::orderBy('created_at', 'DESC')->get();
+        return view('levels.index', compact('levels') );
     }
 
     /**
@@ -23,7 +25,9 @@ class LevelsController extends Controller
      */
     public function create()
     {
-        //
+        $students = \App\Student::pluck('name','id');
+        return view('levels.create', compact('students'));
+
     }
 
     /**
@@ -34,9 +38,19 @@ class LevelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $data = $request->validate([
+            'name'=>'required|min:5',
+            'price' => 'required|max:7|numeric',
+            'description' => 'max:1000000'
+        ]);
 
+        $level = new Level();
+        $level->name = $request->input('name');
+        $level->description = $request->input('description');
+        $level->student_id = $request->input('student_id');
+        $level->save();
+        return redirect('/');
+    }
     /**
      * Display the specified resource.
      *
@@ -56,7 +70,11 @@ class LevelsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $levels = \App\Level::find($id);
+        $students = \App\Student::pluck('name','id');
+        return view('levels.edit', compact('level','students'));
+
+
     }
 
     /**
@@ -68,7 +86,16 @@ class LevelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $level = \App\Level::find($id);
+        if($level){
+            $level->update([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'student_id' => $request->input('student_id'),
+            ]);
+        }
+
+        return redirect()->back();
     }
 
     /**
