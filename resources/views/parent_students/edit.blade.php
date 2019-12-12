@@ -3,7 +3,7 @@
     <div class="container">
             <div id="pseudo_inscription">
                 <div class="row">
-                    <form action="{{route('student.update',['id'=>$student->id])}}" method="post" class="form-group">
+                    <form action="{{route('parent_student.update',['id'=>$parent_student->id])}}" method="post" class="form-group">
                     @csrf
                     @method('patch')
                     <div class="col-12">
@@ -20,10 +20,10 @@
                             type="text" name="Birth_Place" placeholder="Entrez votre Prenom" id="Birth_Place" class="form-control"/>
                     </div>
                     <div class="col-12">
-                        <input type="text" name="Marital_status" placeholder="Entrez votre nom" id="Marital_status" class="form-control"/>
+                        <input type="text" name="Marital_status" placeholder="Entrez votre situation matrimoniale" id="Marital_status" class="form-control"/>
                     </div>
                     <div class="col-12">
-                        <input type="text" name="status" placeholder="Entrez votre Prenom" id="status" class="form-control"/>
+                        <input type="text" name="status" placeholder="Entrez votre statut" id="status" class="form-control"/>
                     </div>
                     <div class="col-12">
                         <input type="text" name="address" placeholder="Entrez votre adresse" id="address" class="form-control"/>
@@ -37,7 +37,7 @@
                         <label class="control-label col-sm-2" for="email">Email:</label>
                         <input type="email" name="email" placeholder="Entrez votre email" id="email" class="form-control"/>
                     </div>
-                    <div class="col-12">
+                        <div class="col-12">
                         Genre:
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="civility" id="civilityF" value="0"/>
@@ -57,5 +57,5 @@
     </div>
 
 
-<h2>je suis ici</h2>
+
 

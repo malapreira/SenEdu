@@ -15,8 +15,8 @@ class JoinControlMatter extends Migration
     {
         Schema::create('control_matter', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('control_id');
-            $table->unsignedInteger('matter_id');
+            $table->unsignedInteger('control_id')->nullable();
+            $table->unsignedInteger('matter_id')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class JoinControlMatter extends Migration
         */
     public function down()
     {
-        Schema::dropIfExists('control_matter'); 
+        Schema::dropIfExists('control_matter');
     }
 }

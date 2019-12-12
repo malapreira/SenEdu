@@ -14,8 +14,8 @@ class ClassroomsController extends Controller
      */
     public function index()
     {
-        $classrooms = \App\Classroom::orderBy('created_at', 'DESC')->get();
-        return view('classrooms.index', compact('classrooms'));
+        $classroom = \App\Classroom::orderBy('created_at', 'DESC')->get();
+        return view('classrooms.index', compact('classroom'));
     }
 
     /**
@@ -25,7 +25,9 @@ class ClassroomsController extends Controller
      */
     public function create()
     {
-        return view('classrooms.create');
+        $filiere = \App\Filiere::pluck('name','id');
+        return view('classrooms.create', compact('filiere'));
+     
     }
 
     /**
@@ -39,8 +41,10 @@ class ClassroomsController extends Controller
         $classroom = new Classroom();
         $classroom->name = $request->input('name');
         $classroom->description = $request->input('description');
+        $classroom->filiere_id = $request->input('filiere_id');
+
         $classroom->save();
-        return redirect('/');
+        return redirect('/classroom');
     }
 
     /**
@@ -62,8 +66,9 @@ class ClassroomsController extends Controller
      */
     public function edit($id)
     {
-        $classroom = \App\Classroom::find($id);//on recupere le produit
-        return view('classrooms.edit', compact('classroom'));
+        $classroom = \App\Classroom::find($id);//on recupere le produit);
+        $filiere = \App\Filiere::pluck('name','id');
+        return view('classrooms.edit', compact('classroom','filiere'));
 
     }
 
@@ -81,6 +86,8 @@ class ClassroomsController extends Controller
             $classroom->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
+                'filiere_id' => $request->input('filiere_id'),
+
             ]);
         }
         return redirect()->back();

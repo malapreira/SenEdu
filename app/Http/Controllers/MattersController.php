@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Matter;
+use App\course;
 use Illuminate\Http\Request;
 
 class MattersController extends Controller
@@ -14,7 +15,7 @@ class MattersController extends Controller
      */
     public function index()
     {
-        $matters = matter::All();
+        $matters = Matter::All();
         $matters = \App\Matter::orderBy('created_at', 'DESC')->get();
         return view('matters.index', compact('matters'));
     }
@@ -49,7 +50,7 @@ class MattersController extends Controller
         $matter->description = $request->input('description');
         $matter->course_id = $request->input('course_id');
         $matter->save();
-        return redirect('/');
+        return redirect('/matter');
     }
 
     /**
@@ -72,8 +73,8 @@ class MattersController extends Controller
     public function edit($id)
     {
         $matter = \App\Matter::find($id);
-        $courses = \App\Course::pluck('name','id');
-        return view('matters.edit', compact('matter','courses'));
+        $courses = \App\course::pluck('name','id');
+        return view('matters.edit', compact('matter','course'));
 
     }
 
@@ -91,7 +92,7 @@ class MattersController extends Controller
             $matter->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
-                'course_id' => $request->input('course_id'),
+                'course_id' => $request->input('course_id')->integer(),
 
         ]);
         }

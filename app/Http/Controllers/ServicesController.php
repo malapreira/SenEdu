@@ -14,8 +14,8 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = \App\Service::orderBy('created_at', 'DESC')->get();
-        return view('services.index', compact('services'));
+        $service = \App\Service::orderBy('created_at', 'DESC')->get();
+        return view('services.index', compact('service'));
 
     }
 
@@ -26,8 +26,8 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        $employees = \App\Employee::pluck('name','id');
-        return view('services.create', compact('employees'));
+        $service = \App\Service::pluck('name','id');
+        return view('services.create', compact('service'));
     }
 
     /**
@@ -47,9 +47,8 @@ class ServicesController extends Controller
         $service = new Service();
         $service->name = $request->input('name');
         $service->description = $request->input('description');
-        $service->employee_id = $request->input('employee_id');
         $service->save();
-        return redirect('/');
+        return redirect('/service');
 
 
     }
@@ -74,9 +73,7 @@ class ServicesController extends Controller
     public function edit($id)
     {
         $service = \App\Service::find($id);//on recupere le service
-        $service = \App\Service::find($id);
-        $employees = \App\Employee::pluck('name','id');
-        return view('services.edit', compact('service', 'categories'));
+        return view('services.edit', compact('service'));
 
 
     }
@@ -95,8 +92,7 @@ class ServicesController extends Controller
             $service->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
-                employee_id =>$request ->input('employee_id'),
-            ]);
+                ]);
 
         }
         return redirect()->back();

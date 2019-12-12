@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Professor;
-use App\Teacher_type;
 use Illuminate\Http\Request;
 
 class ProfessorsController extends Controller
@@ -14,8 +13,9 @@ class ProfessorsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $professors=Professor::all();Professor::all();
-        return view('professors.index', compact('professors') );
+        $professor = \App\Professor::orderBy('created_at', 'DESC')->get();
+        $professor = Professor::all();Professor::all();
+        return view('professors.index', compact('professor') );
     }
 
 
@@ -26,9 +26,10 @@ class ProfessorsController extends Controller
      */
     public function create()
     {
-        $teacher_type = Teacher_type::pluck('name','id');
+        $teacher_types = \App\Teacher_type::pluck('name','id');
+        $matters = \App\Matter::pluck('name','id');
 
-        return view('professors.create',compact('teacher_type'));
+        return view('professors.create',compact('teacher_types','matter'));
     }
 
     /**
@@ -39,11 +40,17 @@ class ProfessorsController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'name'=>'required|min:5',
+            'price' => 'required|max:7|numeric',
+            'description' => 'max:1000000'
+        ]);
+
         $professor = new Professor();
         $professor->name = $request->input('name');
         $professor->first_name = $request->input('first_name');
         $professor->civility = $request->input('civility');
-        $professor->year_birth = $request->input('year_birth');
+        $professor->year_birth = date('Y-m-d H:i:s', strtotime($request->input('year_birth')));
         $professor->Birth_Place = $request->input('Birth_Place');
         $professor->Marital_status = $request->input('Marital_status');
         $professor->status = $request->input('status');
@@ -51,9 +58,10 @@ class ProfessorsController extends Controller
         $professor->phone = $request->input('phone');
         $professor->email = $request->input('email');
         $professor->teacher_type_id = $request->input('teacher_type_id');
+        $professor->matter_id = $request->input('matter_id');
 
         $professor->save();
-        return redirect('/');
+        return redirect('/professor');
     }
 
     /**
@@ -75,9 +83,10 @@ class ProfessorsController extends Controller
      */
     public function edit($id)
     {
-        $professors = \App\Professor::find($id);
+        $professor = \App\Professor::find($id);
         $teacher_types = \App\Teacher_type::pluck('name','id');
-        return  view('professors.modifier', compact('professors','teacher_type'));
+        $matters = \App\Matter::pluck('name','id');
+        return  view('professors.edit', compact('professor','teacher_type','matter'));
 
     }
     /**
@@ -95,7 +104,7 @@ class ProfessorsController extends Controller
                 'name'=>$request->input('name'),
                 'first_name'=>$request->input('first_name'),
                 'civility'=>$request->input('civility'),
-                'year_birth'=>$request->input('year_birth'),
+                'year_birth'=>date('Y-m-d H:i:s', strtotime($request->input('year_birth'))),
                 'Birth_Place'=>$request->input('Birth_Place'),
                 'Marital_status'=>$request->input('Marital_status'),
                 'status'=>$request->input('status'),
@@ -103,6 +112,7 @@ class ProfessorsController extends Controller
                 'phone'=>$request->input('phone'),
                 'email'=>$request->input('email'),
                 'teacher_type_id' => $request->input('teacher_type_id'),
+                'matter_id' => $request->input('matter_id'),
 
             ]);
         }

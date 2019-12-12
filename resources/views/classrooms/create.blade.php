@@ -12,4 +12,13 @@
             <div>
                 <button class="btn btn-primary">Enregistrer</button>
             </div>
+            <div>
+                <select name="filiere_id" id="filiere_id" class="form-control">
+                    <option value=""></option>
+                    @foreach($filiere as $key => $value)
+                        <option value="{{$key}}">{{$value}}</option>
+                    @endforeach
+                </select>
+            </div>
+
         </form>

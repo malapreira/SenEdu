@@ -15,8 +15,8 @@ class JoinFiliereLevel extends Migration
     {
         Schema::create('filiere_level', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('filiere_id');
-            $table->unsignedInteger('level_id');
+            $table->unsignedInteger('filiere_id')->nullable();
+            $table->unsignedInteger('level_id')->nullable();
             $table->timestamps();
         });
     }
@@ -28,7 +28,7 @@ class JoinFiliereLevel extends Migration
         */
     public function down()
     {
-        Schema::dropIfExists('filiere_level'); 
+        Schema::dropIfExists('filiere_level');
     }
 }
 

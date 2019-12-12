@@ -14,10 +14,11 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $levels = \App\Employee::orderBy('created_at', 'DESC')->get();
-        return view('employees.index', compact('employees') );
+        $employee = \App\Employee::orderBy('created_at', 'DESC')->get();
+        return view('employees.index', compact('employee') );
 
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +27,8 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $service = \App\Service::pluck('name','id');
+        return view('employees.create', compact('service'));
     }
 
     /**
@@ -37,19 +39,26 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'name'=>'required|min:5',
+            'price' => 'required|max:7|numeric',
+            'description' => 'max:1000000'
+        ]);
+
        $employee = new Employee();
         $employee->name = $request->input('name');
         $employee->first_name = $request->input('first_name');
         $employee->civility = $request->input('civility');
-        $employee->year_birth = $request->input('year_birth');
+        $employee->year_birth = date('Y-m-d H:i:s', strtotime($request->input('year_birth')));
         $employee->Birth_Place = $request->input('Birth_Place');
         $employee->Marital_status = $request->input('Marital_status');
         $employee->status = $request->input('status');
         $employee->address = $request->input('address');
         $employee->phone = $request->input('phone');
         $employee->email = $request->input('email');
+        $employee->service_id = $request->input('service_id');
         $employee->save();
-        return redirect('/');
+        return redirect('/employee');
 
         /*
          return view('employees.index', ['employees' => Employee::all()]);
@@ -75,8 +84,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $employees = \App\Employee::find($id);
-        return  view('employees.modifier', compact('employees'));
+        $employee = \App\Employee::find($id);;
+        $service = \App\service::pluck('name','id');
+        return view('employees.edit', compact('employee','service'));
 
     }
 
@@ -94,14 +104,15 @@ class EmployeesController extends Controller
             $employee->update([
                 'name'=>$request->input('name'),
                 'first_name'=>$request->input('first_name'),
-                'civility'=>$request->input('civility'),
-                'year_birth'=>$request->input('year_birth'),
+                'year_birth'=>date('Y-m-d H:i:s', strtotime($request->input('year_birth'))),
                 'Birth_Place'=>$request->input('Birth_Place'),
                 'Marital_status'=>$request->input('Marital_status'),
                 'status'=>$request->input('status'),
                 'address'=>$request->input('address'),
                 'phone'=>$request->input('phone'),
                 'email'=>$request->input('email'),
+                'civility'=>$request->input('civility'),
+                'service_id' => $request->input('service_id'),
            ]);
         }
         return redirect()->back();

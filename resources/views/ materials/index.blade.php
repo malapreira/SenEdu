@@ -1,23 +1,22 @@
 
 <div class="limiter">
-    <div><p><a href="{{route('service.create')}}">{{('Formulaire d\'inscription')}}</a></p></div>
+    <div><p><a href="{{route('matters.create')}}">{{('Formulaire d\'inscription')}}</a></p></div>
     <div class="container-table100">
         <div class="wrap-table100">
             <div class="table100">
                 <table>
                     <tr>
-                    <th>#</th>          <th>Nom du service</th>       <th>Action</th>              <th></th>
+                    <th>#</th>          <th>Nom de la matiere</th>                     <th></th>
                     </tr>
-                    @foreach($service as $service)
+                    @foreach($matters as $matter)
                     <thead>
 
                         <tr class="table100-head">
                         <tr>
                             <th>#</th>
-                            <th>{{$service->name}}</th>
-
+                            <th>{{$matter->name}}</th>
                             <th>
-                                <p><a href="{{route('edit_service',['id'=>$service->id])}}">Modifier</a></p>
+                                <p><a href="{{route('editer_service',['id'=>$matter->id])}}">Modifier</a></p>
                             </th>
                         </tr>
                     </thead>

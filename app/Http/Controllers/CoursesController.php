@@ -40,6 +40,7 @@ class CoursesController extends Controller
     {
         $course = new course();
         $course->name = $request->input('name');
+        $course->date = date('Y-m-d H:i:s', strtotime($request->input('date')));
         $course->description = $request->input('description');
         $course->save();
         return redirect('/course');
@@ -82,6 +83,7 @@ class CoursesController extends Controller
         if($course){
             $course->update([
                 'name' => $request->input('name'),
+                'date' => date('Y-m-d H:i:s', strtotime($request->input('date'))),
                 'description' => $request->input('description'),
             ]);
         }

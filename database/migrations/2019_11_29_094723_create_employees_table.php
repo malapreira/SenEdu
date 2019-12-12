@@ -17,7 +17,6 @@ class CreateEmployeesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',100);
             $table->string('first_name',150);
-            $table->string('civility',50);
             $table->date('year_birth',100);
             $table->string('Birth_Place',100);
             $table->string('Marital_status',100);
@@ -25,7 +24,8 @@ class CreateEmployeesTable extends Migration
             $table->string('address',150);
             $table->integer('phone');
             $table->string('email',150);
-            $table->unsignedInteger('service_id');
+            $table->string('civility',50);
+            $table->unsignedInteger('service_id')->nullable();
             $table->timestamps();
         });
     }

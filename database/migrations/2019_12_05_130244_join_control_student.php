@@ -15,8 +15,8 @@ class JoinControlStudent extends Migration
     {
         Schema::create('controls_highs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('control_id');
-            $table->unsignedInteger('student_id');
+            $table->unsignedInteger('control_id')->nullable();
+            $table->unsignedInteger('student_id')->nullable();
             $table->string('notes');
 
             $table->timestamps();

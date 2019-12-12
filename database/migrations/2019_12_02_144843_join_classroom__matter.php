@@ -15,8 +15,8 @@ class JoinClassroomMatter extends Migration
     {
         Schema::create('classroom_matter', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('classroom_id');
-            $table->unsignedInteger('matter_id');
+            $table->unsignedInteger('classroom_id')->nullable();
+            $table->unsignedInteger('matter_id')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class JoinClassroomMatter extends Migration
         */
     public function down()
     {
-        Schema::dropIfExists('classroom_matter'); 
+        Schema::dropIfExists('classroom_matter');
     }
 }

@@ -14,8 +14,8 @@ class Parent_studentsController extends Controller
      */
     public function index()
     {
-        $parent_students = \App\parent_student::orderBy('created_at', 'DESC')->get();
-        return view('parent_students.index', compact('parent_students') );
+        $parent_student = \App\parent_student::orderBy('created_at', 'DESC')->get();
+        return view('parent_students.index', compact('parent_student') );
 
     }
 
@@ -41,15 +41,15 @@ class Parent_studentsController extends Controller
         $parent_student->name = $request->input('name');
         $parent_student->first_name = $request->input('first_name');
         $parent_student->civility = $request->input('civility');
-        $parent_student->year_birth = $request->input('year_birth');
-        $parent_student->Birth_Place = $request->input('Birth_Place');
+        $parent_student->year_birth = date('Y-m-d H:i:s', strtotime($request->input('year_birth')));
+        $parent_student->Birth_Place = $request->input('birth_Place');
         $parent_student->Marital_status = $request->input('Marital_status');
         $parent_student->status = $request->input('status');
         $parent_student->address = $request->input('address');
         $parent_student->phone = $request->input('phone');
         $parent_student->email = $request->input('email');
         $parent_student->save();
-        return redirect('/');
+        return redirect('/parent_student');
 
         /*
          return view('employees.index', ['employees' => Employee::all()]);
@@ -75,8 +75,8 @@ class Parent_studentsController extends Controller
      */
     public function edit($id)
     {
-        $parent_students = \App\Parent_student::find($id);
-        return  view('$parent_students.modifier', compact('$parent_students'));
+        $parent_student = \App\Parent_student::find($id);
+        return  view('$parent_student.edit', compact('$parent_student'));
 
     }
 
@@ -89,13 +89,13 @@ class Parent_studentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $parent_student = \App\Employee::find($id);
+        $parent_student = \App\Parent_student::find($id);
         if($parent_student){
             $parent_student->update([
                 'name'=>$request->input('name'),
                 'first_name'=>$request->input('first_name'),
                 'civility'=>$request->input('civility'),
-                'year_birth'=>$request->input('year_birth'),
+                'year_birth'=>date('Y-m-d H:i:s', strtotime($request->input('year_birth'))),
                 'Birth_Place'=>$request->input('Birth_Place'),
                 'Marital_status'=>$request->input('Marital_status'),
                 'status'=>$request->input('status'),

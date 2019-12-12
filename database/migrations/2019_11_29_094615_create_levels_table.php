@@ -17,7 +17,7 @@ class CreateLevelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',100);
             $table->string('description',150);
-            $table->unsignedInteger('high_id')->nullable();
+            $table->unsignedInteger('student_id')->nullable();
             $table->timestamps();
         });
     }

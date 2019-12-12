@@ -6,12 +6,13 @@
            @foreach($matters as $matter)
                    <tr>
                            <th>#</th>
-                           <th>{{$matter->name}}  {{ $matter->course->name ?? '' }}</th>
+                           <th>{{$matter->name}}</th>
                             <th>
-                                <p><a href="{{route('editer_matter',['id'=>$matter->id])}}">Editer</a></p>
+                                <p><a href="{{route('edit_matter',['id'=>$matter->id])}}">Editer</a></p>
                             </th>
                            <th></th>
                        </tr>
                @endforeach
        </table>
+
 

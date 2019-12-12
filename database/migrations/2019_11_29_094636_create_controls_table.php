@@ -15,8 +15,9 @@ class CreateControlsTable extends Migration
     {
         Schema::create('controls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type',100);
             $table->string('name',100);
+            $table->date('dae');
+            $table->time('time',6);
             $table->timestamps();
         });
     }

@@ -1,7 +1,6 @@
 <div class="container">
-           <div><p><a href="{{route('matter.index')}}">{{__('Enregistrement du niveau')}}</a></p></div>
+           <div><p><a href="{{route('levels.store')}}">{{__('Enregistrement du niveau')}}</a></p></div>
            <div class="container">
-                   <form action="{{route('matter.store')}}" method="post">
                            @csrf
                            <div>
                                     @if($errors->any())

@@ -17,7 +17,6 @@ class CreateFilieresTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',100);
             $table->string('description',150);
-            $table->unsignedInteger('level_id');
             $table->timestamps();
         });
     }

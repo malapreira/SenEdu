@@ -25,8 +25,8 @@ class CreateProfessorsTable extends Migration
             $table->string('address',150);
             $table->integer('phone');
             $table->string('email',150);
-            $table->unsignedInteger('matter_id');
-            $table->unsignedInteger('teacher_type_id');
+            $table->unsignedInteger('matter_id')->nullable;
+            $table->unsignedInteger('teacher_type_id')->nullable;
             $table->timestamps();
         });
     }

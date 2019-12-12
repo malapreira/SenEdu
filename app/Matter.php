@@ -17,7 +17,7 @@ class Matter extends Model
     }
 
     public function course(){
-        return $this->hasMany("App\Courses");
+        return $this->hasMany("App\course");
     }
 
     public function professor(){

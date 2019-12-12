@@ -44,11 +44,11 @@ class LevelsController extends Controller
             'description' => 'max:1000000'
         ]);
 
-        $level = new Level();
-        $level->name = $request->input('name');
-        $level->description = $request->input('description');
-        $level->student_id = $request->input('student_id');
-        $level->save();
+        $levels = new Level();
+        $levels->name = $request->input('name');
+        $levels->description = $request->input('description');
+        $levels->student_id = $request->input('student_id');
+        $levels->save();
         return redirect('/');
     }
     /**
@@ -86,9 +86,9 @@ class LevelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $level = \App\Level::find($id);
-        if($level){
-            $level->update([
+        $levels = \App\Level::find($id);
+        if($levels){
+            $levels->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'student_id' => $request->input('student_id'),

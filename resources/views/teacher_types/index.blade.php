@@ -8,7 +8,7 @@
             <th>#</th>
             <th>{{$teacher_type->name}}</th>
             <th>
-                <p><a href="{{route('editer_teacher_type',['id'=>$teacher_type->id])}}">Editer</a>
+                <p><a href="{{route('edit_teacher_type',['id'=>$teacher_type->id])}}">Editer</a>
 
                 </p>
             </th>

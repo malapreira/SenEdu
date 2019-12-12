@@ -25,12 +25,15 @@
 <body>
 
 <div class="limiter">
-    <div class="py-3 px-4 bg-blue-dark no-underline"><p><a href="{{route('professors.create')}}">{{('Formulaire d\'inscription')}}</a></p></div>
+    <div class="py-3 px-4 bg-blue-dark no-underline"><p><a href="{{route('professor.create')}}">{{('Formulaire d\'inscription')}}</a></p></div>
     <div class="container-table100">
         <div class="wrap-table100">
             <div class="table100">
                 <table>
-                    @foreach($professors as $professor)
+                    <tr>
+                         <th>#</th> <th>Nom</th> <th>Prénom</th> <th>Date de Naissance</th> <th>Lieu de Naissance</th> <th>Situation Matrimonial</th> <th>Statut</th> <th>Adresse</th> <th>Téléphone</th> <th>Email</th> <th>Civilité</th>      <th></th>
+                    </tr>
+                                    @foreach($professor as $professors)
                         <thead>
 
                         <tr class="table100-head">
@@ -42,7 +45,7 @@
                             <th class="column6">Total</th>
                         </tr>
                         <th>
-                            <p><a href="{{route('modifier_professor',['id'=>$professor->id])}}">Modifier</a></p>
+                            <p><a href="{{route('edit_professors',['id'=>$professor->id])}}">Modifier</a></p>
                         </th>
                         </thead>
                     @endforeach

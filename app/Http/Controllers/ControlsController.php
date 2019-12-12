@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Control;
 use Illuminate\Http\Request;
 
 class ControlsController extends Controller
@@ -13,7 +14,9 @@ class ControlsController extends Controller
      */
     public function index()
     {
-        //
+        $controls = \App\Control::orderBy('created_at', 'DESC')->get();
+        return view('controls.index', compact('controls'));
+
     }
 
     /**
@@ -23,7 +26,7 @@ class ControlsController extends Controller
      */
     public function create()
     {
-        //
+        return view('controls.create');
     }
 
     /**
@@ -34,7 +37,12 @@ class ControlsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $control = new Control();
+        $control->name = $request->input('name');
+        $control->date = $request->input('date');
+        $control->time = $request->input('time');
+        $control->save();
+        return redirect('/control');
     }
 
     /**
@@ -56,7 +64,9 @@ class ControlsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $control = \App\Control::find($id);//on recupere le produit
+        return view('controls.edit', compact('control'));
+
     }
 
     /**
@@ -68,7 +78,16 @@ class ControlsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $control = \App\Course::find($id);
+        if($control){
+            $control->update([
+                'name' => $request->input('date'),
+                'date' => $request->input('name'),
+                'time' => $request->input('time'),
+                ]);
+        }
+        return redirect()->back();
+
     }
 
     /**

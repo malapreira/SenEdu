@@ -27,7 +27,7 @@
                 <h2 class="title">Formulaire d'incription</h2>
             </div>
             <div class="card-body">
-                <form action="{{route('employees.store')}}" id="formulaire" class="form-group" method="post">
+                <form action="{{route('employee.store')}}" id="formulaire" class="form-group" method="post">
                     <div class="form-row">
                         @csrf
                         <div class="name">Nom:</div>
@@ -36,49 +36,49 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Prenom:</div>
+                        <div class="first_name">Prenom:</div>
                         <div class="value">
                             <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre Prenom">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Date de naissance:</div>
+                        <div class="year_birth">Date de naissance:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="full_name" placeholder="Entrez votre date de naissance">
+                            <input class="input--style-6" type="text" name="year_birth" placeholder="Entrez votre date de naissance">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Lieu de naissance:</div>
+                        <div class="Birth_Place">Lieu de naissance:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre Lieu de naissance">
+                            <input class="input--style-6" type="text" name="Birth_Place" placeholder="Entrez votre Lieu de naissance">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Situation Matrimoniale:</div>
+                        <div class="Marital_status">Situation Matrimoniale:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="full_name" placeholder="Entrez votre Situation Matrimoniale">
+                            <input class="input--style-6" type="text" name="Marital_status" placeholder="Entrez votre Situation Matrimoniale">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Statut:</div>
+                        <div class="status">Statut:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre Statut">
+                            <input class="input--style-6" type="text" name="status" placeholder="Entrez votre Statut">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Adresse:</div>
+                        <div class="address">Adresse:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="full_name" placeholder="Entrez votre Adresse">
+                            <input class="input--style-6" type="text" name="address" placeholder="Entrez votre Adresse">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Téléphone:</div>
+                        <div class="phone">Téléphone:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre numero de téléphone">
+                            <input class="input--style-6" type="text" name="phone" placeholder="Entrez votre numero de téléphone">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Email:</div>
+                        <div class="email">Email:</div>
                         <div class="value">
                             <div class="input-group">
                                 <input class="input--style-6" type="email" name="email" placeholder="example@email.com">
@@ -86,23 +86,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name">Mot de Pass:</div>
-                        <div class="value">
-                            <div class="input-group">
-                                <input class="input--style-6" type="email" name="password" placeholder="Entrez votre mot de pass">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">Comfirmer not de pass:</div>
-                        <div class="value">
-                            <div class="input-group">
-                                <input class="input--style-6" type="email" name="password_confirm" placeholder="Confirmer votre mot de pass">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">Genre:</div>
+                        <div class="civility">Genre:</div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="civility" id="civilityF" value="0"/>
                             <label class="form-check-label" for="civilityF">F</label>
@@ -112,17 +96,19 @@
                             <label class="form-check-label" for="civilityM">M </label>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="name">Message</div>
-                        <div class="value">
-                            <div class="input-group">
-                                <textarea class="textarea--style-6" name="message" placeholder="Message sent to the employer"></textarea>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card-footer">
                         <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
                     </div>
+                    <div>
+                        <select name="service_id" id="service_id" class="form-control">
+                            <option value=""></option>
+                            @foreach($service as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
+
                 </form>
             </div>
 

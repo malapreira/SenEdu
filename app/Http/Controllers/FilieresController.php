@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Filiere;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,8 @@ class FilieresController extends Controller
      */
     public function index()
     {
-        $filieres = \App\Filiere::orderBy('created_at', 'DESC')->get();
-        return view('filieres.index', compact('filieres'));
-
-        $filiere->classroom_id = $request->input('classroom_id');
-
+        $filiere = \App\Filiere::orderBy('created_at', 'DESC')->get();
+        return view('filieres.index', compact('filiere') );
     }
 
     /**
@@ -27,11 +25,8 @@ class FilieresController extends Controller
      */
     public function create()
     {
-
-
-        $classrooms = \App\Classroom::pluck('name','id');
-        return view('filieres.create', compact('classrooms'));
-
+        $filiere = \App\Filiere::pluck('name','id');
+        return view('filieres.create');
 
     }
 
@@ -51,15 +46,16 @@ class FilieresController extends Controller
         ]);
 
         $filiere = new Filiere();
+
         $filiere->name = $request->input('name');
         $filiere->description = $request->input('description');
-        $filiere->classroom_id = $request->input('classroom_id');
         $filiere->save();
-        return redirect('/');
+        return redirect('/filiere');
 
-
-    }
-
+        
+    }    
+    
+    
     /**
      * Display the specified resource.
      *
@@ -79,13 +75,8 @@ class FilieresController extends Controller
      */
     public function edit($id)
     {
-        $filiere = \App\Filiere::find($id);//on recupere la filiere
-        return view('filieres.edit', compact('filiere'));
-
-
-        $filiere = \App\Filiere::find($id);
-        $classrooms = \App\Classroom::pluck('name','id');
-        return view('filieres.edit', compact('filiere','classrooms'));
+        $filiere = \App\Filiere::find($id);;
+        return view('filiere.edit', compact('filiere'));
 
 
     }
@@ -104,9 +95,7 @@ class FilieresController extends Controller
             $filiere->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
-                'classroom_id' => $request->input('classroom_id'),
-
-            ]);
+               ]);
         }
         return redirect()->back();
 

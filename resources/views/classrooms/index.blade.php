@@ -3,12 +3,12 @@
     <tr>
         <th>#</th>          <th>Nom Cours</th>                      <th></th>
     </tr>
-    @foreach($classrooms as $classroom)
+    @foreach($classroom as $classroom)
         <tr>
             <th>#</th>
             <th>{{$classroom->name}}</th>
             <th>
-                <p><a href="{{route('editer_classroom',['id'=>$classroom->id])}}">Editer</a>
+                <p><a href="{{route('edit_classroom',['id'=>$classroom->id])}}">Editer</a>
 
                 </p>
             </th>

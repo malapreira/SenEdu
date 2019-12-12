@@ -1,7 +1,7 @@
 <div class="container">
     <div><h1>{{__('Enregistrement d\'une filiere')}}</h1></div>
     <div class="container">
-        <form action="{{route('filieres.store')}}" method="post">
+        <form action="{{route('filiere.store')}}" method="post">
             @csrf
             <div>
                 <input type="text" name="name" class="form-control" placeholder="le nom de la filiere">
@@ -14,14 +14,6 @@
             </div>
         </form>
 
-        <div>
-            <select name="classroom_id" id="classroom_id" class="form-control">
-                <option value=""></option>
-                @foreach($classrooms as $key => $value)
-                    <option value="{{$key}}" {{ $key == $filiere->classroom_id ? 'selected="selected"':''}}>{{$value}}</option>
-                @endforeach
-            </select>
-        </div>
 
 
 

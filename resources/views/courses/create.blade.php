@@ -7,6 +7,9 @@
                 <input type="text" name="name" class="form-control" placeholder="le nom du cours">
             </div>
             <div>
+                <input type="text" name="date" class="form-control" placeholder="la date du cours">
+            </div>
+            <div>
                 <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="La description"></textarea>
             </div>
             <div>
