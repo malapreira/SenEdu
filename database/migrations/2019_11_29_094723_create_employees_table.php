@@ -25,7 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('phone');
             $table->string('email',150);
             $table->string('civility',50);
-            $table->unsignedInteger('service_id')->nullable();
+            $table->Integer('service_id')->nullable();
             $table->timestamps();
         });
     }

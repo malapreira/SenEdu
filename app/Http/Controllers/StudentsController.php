@@ -28,7 +28,8 @@ class StudentsController extends Controller
     {
 
         $parent_students = \App\parent_student::pluck('name','id');
-        return view('students.create', compact('parent_students'));
+        $classroom = \App\Classroom::pluck('name','id');
+        return view('students.create', compact('parent_students','classroom'));
 
     }
 
@@ -45,13 +46,12 @@ class StudentsController extends Controller
         $student->first_name = $request->input('first_name');
         $student->civility = $request->input('civility');
         $student->year_birth = date('Y-m-d H:i:s', strtotime($request->input('year_birth')));
-        $student->Birth_Place = $request->input('Birth_Place');
-        $student->level = $request->input('level');
-        $student->filiere = $request->input('filiere');
+        $student->Birth_Place = $request->input('birth_Place');
         $student->address = $request->input('address');
         $student->phone = $request->input('phone');
         $student->email = $request->input('email');
         $student->parent_student_id = $request->input('parent_student_id');
+        $student->classroom_id = $request->input('classroom_id');
         $student->save();
         return redirect('/student');
     }
@@ -77,7 +77,8 @@ class StudentsController extends Controller
     {
         $student = \App\Student::find($id);
         $parent_students = \App\parent_student::pluck('name','id');
-        return view('students.edit', compact('student','parent_students'));
+        $classroom = \App\Classroom::pluck('name','id');
+        return view('students.edit', compact('student','parent_students','classroom'));
 
 
     }
@@ -98,13 +99,12 @@ class StudentsController extends Controller
                 'first_name' => $request->input('first_name'),
                 'civility' => $request->input('civility'),
                 'year_birth' => date('Y-m-d H:i:s', strtotime($request->input('year_birth'))),
-                'Birth_Place' => $request->input('Birth_Place'),
-                'Marital_status' => $request->input('level'),
-                'status' => $request->input('filiere'),
+                'Birth_Place' => $request->input('birth_Place'),
                 'address' => $request->input('address'),
                 'phone' => $request->input('phone'),
                 'email' => $request->input('email'),
                 'parent_student_id' => $request->input('parent_student_id'),
+                'classroom_id' => $request->input('classroom_id'),
 
             ]);
         }

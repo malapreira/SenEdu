@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class JoinControlStudent extends Migration
+class JoinControlInscription extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class JoinControlStudent extends Migration
      */
     public function up()
     {
-        Schema::create('controls_highs', function (Blueprint $table) {
+        Schema::create('control_inscription', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('control_id')->nullable();
-            $table->unsignedInteger('student_id')->nullable();
-            $table->string('notes');
-
+            $table->string('note',100);
+            $table->Integer('controls_id')->nullable();
+            $table->Integer('inscriptions_id')->nullable();
             $table->timestamps();
         });
+       
     }
 
     /**
@@ -30,6 +30,6 @@ class JoinControlStudent extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('controls_inscriptions');
     }
 }

@@ -12,12 +12,11 @@ class Student extends Model
         return $this->hasMany("App\Parent");
     }
 
-    public function controls(){
-        return $this->belongsToMany("App\Controls");
+    public function classroom(){
+        return $this->hasMany("App\Classroom");
     }
 
-
-    public function level(){
-        return $this->belongsTo("App\Levels");
+    public function inscription(){
+        return $this->belongsTo("App\Inscription");
     }
 }

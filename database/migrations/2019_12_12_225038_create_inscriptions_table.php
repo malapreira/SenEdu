@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class JoinLevelStudent extends Migration
+class CreateInscriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class JoinLevelStudent extends Migration
      */
     public function up()
     {
-        Schema::create('level_student', function (Blueprint $table) {
+        Schema::create('inscriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('level_id');
-            $table->unsignedInteger('student_id');
+            $table->date('date');
+            $table->decimal('amount');
+            $table->Integer('academic__years_id')->nullable();
+            $table->Integer('students_id')->nullable();
             $table->timestamps();
         });
     }
 
+    
     /**
      * Reverse the migrations.
      *
@@ -28,6 +31,6 @@ class JoinLevelStudent extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('inscriptions');
     }
 }

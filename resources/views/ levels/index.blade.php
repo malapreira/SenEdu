@@ -3,10 +3,10 @@
            <tr>
                    <th>#</th>          <th>Nom du Niveau</th>                    <th>Action</th>               <th></th>
                </tr>
-           @foreach($levels as $level)
+           @foreach($level as $level)
                    <tr>
                            <th>#</th>
-                           <th>{{$level->name}}  {{ $level->student->name ?? '' }}</th>
+                           <th>{{$level->name}}</th>
                             <th>
                                 <p><a href="{{route('edit_level',['id'=>$level->id])}}">Editer</a></p>
                             </th>

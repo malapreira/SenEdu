@@ -25,8 +25,7 @@ class LevelsController extends Controller
      */
     public function create()
     {
-        $students = \App\Student::pluck('name','id');
-        return view('levels.create', compact('students'));
+        return view('levels.create');
 
     }
 
@@ -40,16 +39,14 @@ class LevelsController extends Controller
     {
         $data = $request->validate([
             'name'=>'required|min:5',
-            'price' => 'required|max:7|numeric',
             'description' => 'max:1000000'
         ]);
 
         $levels = new Level();
         $levels->name = $request->input('name');
         $levels->description = $request->input('description');
-        $levels->student_id = $request->input('student_id');
         $levels->save();
-        return redirect('/');
+        return redirect('/level');
     }
     /**
      * Display the specified resource.
@@ -71,8 +68,7 @@ class LevelsController extends Controller
     public function edit($id)
     {
         $levels = \App\Level::find($id);
-        $students = \App\Student::pluck('name','id');
-        return view('levels.edit', compact('level','students'));
+        return view('levels.edit');
 
 
     }
@@ -91,8 +87,7 @@ class LevelsController extends Controller
             $levels->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
-                'student_id' => $request->input('student_id'),
-            ]);
+                ]);
         }
 
         return redirect()->back();

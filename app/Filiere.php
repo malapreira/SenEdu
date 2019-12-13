@@ -8,11 +8,7 @@ class Filiere extends Model
 {
     protected $guarded = [];
 
-    public function level(){
-        return $this->belongsToMany("App\Levels");
-    }
-
     public function classroom(){
-        return $this->belongsTo("App\Classrooms");
+        return $this->belongsTo("App\Classroom");
     }
 }

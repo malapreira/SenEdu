@@ -48,21 +48,9 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="Birth_Place">Lieu de naissance:</div>
+                        <div class="birth_Place">Lieu de naissance:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="Birth_Place" placeholder="Entrez votre Lieu de naissance">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="level">Niveau:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="level" placeholder="Entrez votre Niveau">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="filiere">Statut:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="filiere" placeholder="Entrez votre Filiere">
+                            <input class="input--style-6" type="text" name="birth_Place" placeholder="Entrez votre Lieu de naissance">
                         </div>
                     </div>
                     <div class="form-row">
@@ -103,6 +91,15 @@
                         <select name="parent_students_id" id="parent_students_id" class="form-control">
                             <option value=""></option>
                             @foreach($parent_students as $key => $value)
+                                <option value="{{$key}}">{{$value}}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <select name="classrooms_id" id="classrooms_id" class="form-control">
+                            <option value=""></option>
+                            @foreach($classroom as $key => $value)
                                 <option value="{{$key}}">{{$value}}</option>
 
                             @endforeach

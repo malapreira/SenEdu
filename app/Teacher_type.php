@@ -9,7 +9,7 @@ class Teacher_type extends Model
     protected $guarded = [];
 
     public function professor(){
-        return $this->belongsTo("App\Professors");
+        return $this->belongsTo("App\Professor");
     }
 }
 

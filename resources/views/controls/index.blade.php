@@ -10,7 +10,7 @@
             <th>{{$control->date}}</th>
             <th>{{$control->time}}</th>
             <th>
-                <p><a href="{{route('editer_ccontrol',['id'=>$ccontrol->id])}}">Editer</a>
+                <p><a href="{{route('edit_control',['id'=>$control->id])}}">Editer</a>
 
                 </p>
             </th>

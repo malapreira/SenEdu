@@ -8,11 +8,8 @@ class Control extends Model
 {
     protected $guarded = [];
 
-    public function highs(){
-        return $this->belongsToMany("App\Highs");
+    public function inscription(){
+        return $this->belongsToMany("App\Inscription");
     }
 
-    public function matter(){
-        return $this->belongsToMany("App\Matters");
-    }
 }

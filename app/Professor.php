@@ -9,10 +9,10 @@ class Professor extends Model
     protected $guarded = [];
 
     public function matter(){
-        return $this->hasMany("App\Matters");
+        return $this->hasMany("App\Matter");
     }
 
-    public function teacher_type(){
-        return $this->hasMany("Teacher_type");
+    public function course(){
+        return $this->belongsTo("Course");
     }
 }

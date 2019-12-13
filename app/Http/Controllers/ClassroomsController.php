@@ -18,6 +18,7 @@ class ClassroomsController extends Controller
         return view('classrooms.index', compact('classroom'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +27,8 @@ class ClassroomsController extends Controller
     public function create()
     {
         $filiere = \App\Filiere::pluck('name','id');
-        return view('classrooms.create', compact('filiere'));
+        $level = \App\Level::pluck('name','id');
+        return view('classrooms.create', compact('filiere','level'));
      
     }
 
@@ -42,6 +44,7 @@ class ClassroomsController extends Controller
         $classroom->name = $request->input('name');
         $classroom->description = $request->input('description');
         $classroom->filiere_id = $request->input('filiere_id');
+        $classroom->level_id = $request->input('level_id');
 
         $classroom->save();
         return redirect('/classroom');
@@ -68,7 +71,8 @@ class ClassroomsController extends Controller
     {
         $classroom = \App\Classroom::find($id);//on recupere le produit);
         $filiere = \App\Filiere::pluck('name','id');
-        return view('classrooms.edit', compact('classroom','filiere'));
+        $level = \App\Level::pluck('name','id');
+        return view('classrooms.edit', compact('classroom','filiere','level'));
 
     }
 
@@ -81,12 +85,13 @@ class ClassroomsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $classroom = \App\Course::find($id);
+        $classroom = \App\Classroom::find($id);
         if($classroom){
             $classroom->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'filiere_id' => $request->input('filiere_id'),
+                'level_id' => $request->input('level_id'),
 
             ]);
         }

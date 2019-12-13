@@ -1,6 +1,5 @@
 <div class="container">
-           <div><p><a href="{{route('matter.index')}}">{{__('Enregistrement d\'un produit')}}</a></p></div>
-           <div class="container">
+    <div><h1>{{__('Ajout d\'une Matiere')}}</h1></div>
                    <form action="{{route('matter.store')}}" method="post">
                            @csrf
                            <div>
@@ -17,14 +16,7 @@
                            <div>
                                    <button class="btn btn-primary">Enregistrer</button>
                            </div>
-                            <div>
-                                <select name="course_id" id="course_id" class="form-control">
-                                    <option value=""></option>
-                                       @foreach($courses as $key => $value)
-                                        <option value="{{$key}}" >{{$value}}</option>
-                                        @endforeach
-                                </select>
-                            </div>
+                            
                       </form>
 
 

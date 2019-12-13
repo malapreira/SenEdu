@@ -80,21 +80,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <div class="Birth_Place">Lieu de naissance:</div>
+                                                <div class="birth_Place">Lieu de naissance:</div>
                                                 <div class="value">
-                                                    <input class="input--style-6" type="text" name="Birth_Place" placeholder="Entrez votre Lieu de naissance">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="level">Niveau:</div>
-                                                <div class="value">
-                                                    <input class="input--style-6" type="text" name="level" placeholder="Entrez votre Niveau">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="filiere">Filiere:</div>
-                                                <div class="value">
-                                                    <input class="input--style-6" type="text" name="filiere" placeholder="Entrez votre Filiere">
+                                                    <input class="input--style-6" type="text" name="birth_Place" placeholder="Entrez votre Lieu de naissance">
                                                 </div>
                                             </div>
                                             <div class="form-row">

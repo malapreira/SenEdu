@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class JoinFiliereLevel extends Migration
+class CreateAcademicYearsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,20 @@ class JoinFiliereLevel extends Migration
      */
     public function up()
     {
-        Schema::create('filiere_level', function (Blueprint $table) {
+        Schema::create('academic__years', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('filiere_id')->nullable();
-            $table->unsignedInteger('level_id')->nullable();
+            $table->decimal('academic',50);
             $table->timestamps();
         });
     }
 
-        /**
-        * Reverse the migrations.
-        *
-        * @return void
-        */
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
-        Schema::dropIfExists('filiere_level');
+        Schema::dropIfExists('academic__years');
     }
 }
-

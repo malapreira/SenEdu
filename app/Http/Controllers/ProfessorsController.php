@@ -14,7 +14,6 @@ class ProfessorsController extends Controller
      */
     public function index(){
         $professor = \App\Professor::orderBy('created_at', 'DESC')->get();
-        $professor = Professor::all();Professor::all();
         return view('professors.index', compact('professor') );
     }
 
@@ -27,7 +26,7 @@ class ProfessorsController extends Controller
     public function create()
     {
         $teacher_types = \App\Teacher_type::pluck('name','id');
-        $matters = \App\Matter::pluck('name','id');
+        $matter = \App\Matter::pluck('name','id');
 
         return view('professors.create',compact('teacher_types','matter'));
     }
@@ -63,6 +62,7 @@ class ProfessorsController extends Controller
         $professor->save();
         return redirect('/professor');
     }
+
 
     /**
      * Display the specified resource.

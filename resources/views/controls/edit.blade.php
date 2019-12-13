@@ -1,4 +1,4 @@
-<form action="{{route('course.update',['id'=>$conrol->id])}}" method="post">
+<form action="{{route('control.update',['id'=>$control->id])}}" method="post">
     @csrf
     @method('patch')
     <div><input type="text" name="name" class="form-control" placeholder="le nom du coontrole" value="{{$control->name}}"></div>

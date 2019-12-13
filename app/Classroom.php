@@ -9,11 +9,19 @@ class Classroom extends Model
     protected $guarded = [];
 
     public function filiere(){
-        return $this->hasMany("App\filieres");
+        return $this->hasMany("App\filiere");
     }
 
-    public function matter(){
-        return $this->belongsToMany("App\Matters");
+    public function level(){
+        return $this->hasMany("App\Level");
+    }
+
+    public function course(){
+        return $this->belongsTo("App\Course");
+    }
+
+    public function student(){
+        return $this->belongsTo("App\Student");
     }
     
 }

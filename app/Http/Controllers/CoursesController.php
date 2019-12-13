@@ -14,8 +14,8 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = \App\course::orderBy('created_at', 'DESC')->get();
-        return view('courses.index', compact('courses'));
+        $course = \App\course::orderBy('created_at', 'DESC')->get();
+        return view('courses.index', compact('course'));
 
     }
 
@@ -26,7 +26,10 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        $matter = \App\Matter::pluck('name','id');
+        $classroom = \App\Classroom::pluck('name','id');
+        $professor = \App\Professor::pluck('name','id');
+        return view('courses.create', compact('classroom','matter','professor'));
 
     }
 
@@ -42,6 +45,9 @@ class CoursesController extends Controller
         $course->name = $request->input('name');
         $course->date = date('Y-m-d H:i:s', strtotime($request->input('date')));
         $course->description = $request->input('description');
+        $course->classroom_id = $request->input('classroom_id');
+        $course->matter_id = $request->input('matter_id');
+        $course->professor_id = $request->input('professor_id');
         $course->save();
         return redirect('/course');
     }
@@ -66,7 +72,10 @@ class CoursesController extends Controller
     public function edit($id)
     {
         $course = \App\course::find($id);//on recupere le produit
-        return view('courses.edit', compact('course'));
+        $matter = \App\Matter::pluck('name','id');
+        $classroom = \App\Classroom::pluck('name','id');
+        $professor = \App\Professor::pluck('name','id');
+        return view('courses.edit', compact('course','classroom','matter','professor'));
 
     }
 
@@ -85,6 +94,10 @@ class CoursesController extends Controller
                 'name' => $request->input('name'),
                 'date' => date('Y-m-d H:i:s', strtotime($request->input('date'))),
                 'description' => $request->input('description'),
+                'classroom_id' => $request->input('classroom_id'),
+                'matter_id' => $request->input('matter_id'),
+                'professor_id' => $request->input('professor_id'),
+
             ]);
         }
         return redirect()->back();

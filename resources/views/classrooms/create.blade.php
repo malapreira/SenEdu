@@ -20,5 +20,13 @@
                     @endforeach
                 </select>
             </div>
+            <div>
+                <select name="level_id" id="level_id" class="form-control">
+                    <option value=""></option>
+                    @foreach($level as $key => $value)
+                        <option value="{{$key}}">{{$value}}</option>
+                    @endforeach
+                </select>
+            </div>
 
         </form>

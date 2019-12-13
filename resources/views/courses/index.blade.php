@@ -3,7 +3,7 @@
     <tr>
         <th>#</th>          <th>Nom Cours</th>    <th>Date du Cours</th>                  <th></th>
     </tr>
-    @foreach($courses as $course)
+    @foreach($course as $course)
         <tr>
             <th>#</th>
             <th>{{$course->name}}</th>

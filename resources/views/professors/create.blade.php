@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Formulaire d'inscription des professeurs</title>
+    <title>Formulaire d'inscription parent d'élève</title>
 
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -27,7 +27,7 @@
                 <h2 class="title">Formulaire d'incription</h2>
             </div>
             <div class="card-body">
-                <form action="{{route('professor.create')}}" id="formulaire" class="form-group" method="get">
+                <form action="{{route('professor.store')}}" id="formulaire" class="form-group" method="post">
                     <div class="form-row">
                         @csrf
                         <div class="name">Nom:</div>
@@ -48,21 +48,21 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="Birth_Place">Lieu de naissance:</div>
+                        <div class="birth_Place">Lieu de naissance:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="Birth_Place" placeholder="Entrez votre Lieu de naissance">
+                            <input class="input--style-6" type="text" name="birth_Place" placeholder="Entrez votre Lieu de naissance">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="Marital_status">Situation Matrimoniale:</div>
+                        <div class="Marital_status">Situation matrimoniale:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="Marital_status" placeholder="Entrez votre Situation Matrimoniale">
+                            <input class="input--style-6" type="text" name="Marital_status" placeholder="Entrez votre situation matrimoniale">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="status">Statut:</div>
+                        <div class="status">statut:</div>
                         <div class="value">
-                            <input class="input--style-6" type="text" name="status" placeholder="Entrez votre Statut">
+                            <input class="input--style-6" type="text" name="status" placeholder="Entrez votre statut">
                         </div>
                     </div>
                     <div class="form-row">
@@ -99,20 +99,8 @@
                     <div class="card-footer">
                         <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
                     </div>
-                    <div>
-                        <select name="teacher_type_id" id="teacher_type_id" class="form-control">
-                        <select name="matter_id" id="matter_id" class="form-control">
-                            <option value=""></option>
-                            @foreach($teacher_types as $key => $value)
-                            @foreach($matter as $key => $value)
-                                <option value="{{$key}}">{{$value}}</option>
-
-                            @endforeach
-                        </select>
-                    </div>
                 </form>
             </div>
-
 
         </div>
     </div>
@@ -128,3 +116,4 @@
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
+<!-- end document-->

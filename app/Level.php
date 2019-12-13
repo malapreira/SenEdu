@@ -8,11 +8,7 @@ class Level extends Model
 {
     protected $guarded = [];
 
-    public function high(){
-        return $this->hasMany("App\Highs");
-    }
-
-    public function filiere(){
-        return $this->belongsToMany("App\Filieres");
+    public function classroom(){
+        return $this->belongsTo("App\Classroom");
     }
 }
