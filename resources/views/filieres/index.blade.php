@@ -1,17 +1,28 @@
-<table class="table table-striped">
-    <div class="py-3 px-4 bg-blue-dark no-underline"><p><a href="{{route('filiere.create')}}">{{('Ajouter une evaluation')}}</a></p></div>
-    <tr>
-        <th>#</th>          <th>Nom controle</th>                        <th></th>
-    </tr>
-    @foreach($filiere as $filiere)
-        <tr>
-            <th>#</th>
-            <th>{{$filiere->name}}</th>
-            <th>
-                <p><a href="{{route('edit_filiere',['id'=>$filiere->id])}}">Editer</a>
+@extends("acces")
 
-                </p>
-            </th>
-        </tr>
-    @endforeach
-</table>
+@section("contenu")
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+            <div><p><a href="{{route('filiere.create')}}">{{('Ajouter une filiere')}}</a></p></div>
+            <table class="table table-bordered table-striped">
+                   <tr>
+                       <th width="10%">Numero</th>
+                       <th width="35%">Nom de la filiere</th>
+                       <th width="35%">Action</th>
+                       <th></th>
+                   </table>
+
+                @foreach($filiere as $filiere)
+                    <tr>
+                        <th>#</th>
+                        <th>{{$filiere->name}}</th>
+                        <th>
+                        </th>
+                    </tr>
+                @endforeach
+                </table>
+        </div>
+    </div>
+
+
+@endsection

@@ -14,8 +14,8 @@ class LevelsController extends Controller
      */
     public function index()
     {
-        $levels = \App\Level::orderBy('created_at', 'DESC')->get();
-        return view('levels.index', compact('levels') );
+        $level = \App\Level::orderBy('created_at', 'DESC')->get();
+        return view('levels.index', compact('level') );
     }
 
     /**
@@ -67,9 +67,8 @@ class LevelsController extends Controller
      */
     public function edit($id)
     {
-        $levels = \App\Level::find($id);
+        $level = \App\Level::find($id);
         return view('levels.edit');
-
 
     }
 
@@ -82,9 +81,9 @@ class LevelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $levels = \App\Level::find($id);
-        if($levels){
-            $levels->update([
+        $level = \App\Level::find($id);
+        if($level){
+            $level->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 ]);

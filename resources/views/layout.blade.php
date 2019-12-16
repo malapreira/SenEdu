@@ -74,7 +74,7 @@
                                     <ul class="dropdown">
                                         <li><a href="index.html">Home</a></li>
                                         <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="course.html">Course</a></li>
+                                        <li><a href="courses/index.blade.phph">Course</a></li>
                                         <li><a href="blog.html">Blog</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                         <li><a href="elements.html">Elements</a></li>
@@ -109,7 +109,7 @@
                                     </div>
                                 </li>
                                 <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="course.html">Course</a></li>
+                                <li><a href="courses/index">Course</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </div>
@@ -138,7 +138,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="footer-widget mb-100">
                         <div class="widget-title">
-                            <a href="#"><img src="{{asset('img/core-img/logo2.png"')}} alt=""></a>
+                            <a href="#"><img src="{{asset('img/core-img/logo2.png")}} alt=""></a>
                         </div>
                         <p>Cras vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est, in euismod erat. Ut at erat et arcu pulvinar cursus a eget.</p>
                         <div class="footer-social-info">
@@ -173,12 +173,12 @@
                             <h6>Gallery</h6>
                         </div>
                         <div class="gallery-list d-flex justify-content-between flex-wrap">
-                            <a href="{{asset('img/bg-img/gallery1.jpg')}}" class="gallery-img" title="Gallery Image 1"><img src="{{asset('img/bg-img/gallery1.jpg')}}" alt=""></a>
-                            <a href="{{asset('img/bg-img/gallery2.jpg')}}" class="gallery-img" title="Gallery Image 2"><img src="{{asset('img/bg-img/gallery2.jpg')}}" alt=""></a>
-                            <a href="{{asset('img/bg-img/gallery3.jpg')}}" class="gallery-img" title="Gallery Image 3"><img src="{{asset('img/bg-img/gallery3.jpg')}}" alt=""></a>
-                            <a href="{{asset('img/bg-img/gallery4.jpg')}}" class="gallery-img" title="Gallery Image 4"><img src="{{asset('img/bg-img/gallery4.jpg')}}" alt=""></a>
-                            <a href="{{asset('img/bg-img/gallery5.jpg')}}" class="gallery-img" title="Gallery Image 5"><img src="{{asset('img/bg-img/gallery5.jpg')}}" alt=""></a>
-                            <a href="{{asset('img/bg-img/gallery6.jpg')}}" class="gallery-img" title="Gallery Image 6"><img src="{{asset('img/bg-img/gallery6.jpg')}}" alt=""></a>
+                            <a href="img/bg-img/gallery1.jpg" class="gallery-img" title="Gallery Image 1"><img src="img/bg-img/gallery1.jpg" alt=""></a>
+                            <a href="img/bg-img/gallery2.jpg" class="gallery-img" title="Gallery Image 2"><img src="img/bg-img/gallery2.jpg" alt=""></a>
+                            <a href="img/bg-img/gallery3.jpg" class="gallery-img" title="Gallery Image 3"><img src="img/bg-img/gallery3.jpg" alt=""></a>
+                            <a href="img/bg-img/gallery4.jpg" class="gallery-img" title="Gallery Image 4"><img src="img/bg-img/gallery4.jpg" alt=""></a>
+                            <a href="img/bg-img/gallery5.jpg" class="gallery-img" title="Gallery Image 5"><img src="img/bg-img/gallery5.jpg" alt=""></a>
+                            <a href="img/bg-img/gallery6.jpg" class="gallery-img" title="Gallery Image 6"><img src="img/bg-img/gallery6.jpg" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -209,27 +209,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p>
                         Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-<!-- ##### Footer Area Start ##### -->
 
-<!-- ##### All Javascript Script ##### -->
-<!-- jQuery-2.2.4 js -->
-<script src="{{asset('js/jquery/jquery-2.2.4.min.js')}}"></script>
-<!-- Popper js -->
-<script src="{{asset('js/bootstrap/popper.min.js')}}"></script>
-<!-- Bootstrap js -->
-<script src="{{asset('js/bootstrap/bootstrap.min.js')}}"></script>
-<!-- All Plugins js -->
-<script src="{{asset('js/plugins/plugins.js')}}"></script>
-<!-- Active js -->
-<script src="{{asset('js/active.js')}}"></script>
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
 </body>
 
 </html>

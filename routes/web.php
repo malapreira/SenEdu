@@ -18,10 +18,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/acces', 'AccesController@index')->name('acces');
+
+Route::resource('/control_inscription',          'Control_InscriptionController');
+Route::get("/control_inscription/edit/{id}",     "Control_InscriptionController@edit")->name('edit_control_inscription');
+Route::get("/control_inscription/edit/{id}",     "Control_InscriptionController@update")->name('update_control_inscription');
+Route::get('/control_inscription/save',          'Control_InscriptionController@create')->name('create_control_inscription');
+
 Route::resource('/course',          'CoursesController');
 Route::get("/course/edit/{id}",     "CoursesController@edit")->name('edit_course');
 Route::get("/course/edit/{id}",     "CoursesController@update")->name('update_course');
 Route::get('/course/save',          'CoursesController@create')->name('create_course');
+
 
 Route::resource('/control',         'ControlsController');
 Route::get("/control/edit/{id}",    "ControlsController@edit")->name('edit_control');
@@ -51,7 +59,7 @@ Route::get('/parent_student/save',         'Parent_studentsController@create_par
 Route::patch('/parent_student/edit/{id}',   'Parent_studentsController@update_parent_student')->name('update_parent_student');
 Route::resource('parent_student',           'Parent_studentsController');
 
-//Route::get('/student', 'StudentsController');
+Route::get('/students/index', 'StudentsController@index');
 Route::get("/student/edit/{id}",    "StudentsController@edit")->name('edit_student');
 Route::post('/student/save',        'StudentsController@create_student')->name('create_student');
 Route::resource('/student',         'StudentsController');

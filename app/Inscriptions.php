@@ -14,8 +14,5 @@ class Inscriptions extends Model
     public function academic_Year(){
         return $this->hasMany("App\Academic_Year");
     }
-    
-    public function student(){
-        return $this->hasMany("App\Student");
-    }
+   
 }

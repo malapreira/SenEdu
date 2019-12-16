@@ -17,6 +17,6 @@ class Student extends Model
     }
 
     public function inscription(){
-        return $this->belongsTo("App\Inscription");
+        return $this->belongsTo("App\Inscriptions");
     }
 }

@@ -26,7 +26,7 @@ class FilieresController extends Controller
     public function create()
     {
         $filiere = \App\Filiere::pluck('name','id');
-        return view('filieres.create');
+        return view('filieres.create')->with('success','Filiere cree avec succes');
 
     }
 
@@ -64,7 +64,8 @@ class FilieresController extends Controller
      */
     public function show($id)
     {
-        //
+        $filierer = \App\Filierer::find($id);;
+        return view('filierer.show', compact('filierer')); 
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Inscription;
+use App\Inscriptions;
 use Illuminate\Http\Request;
 
 class InscriptionsController extends Controller
@@ -14,8 +14,9 @@ class InscriptionsController extends Controller
      */
     public function index()
     {
-       $inscription =\App\Inscription::orderBy('created_at', 'DECS')->get();
-       return view('inscription.index', compact('inscription'));
+        $inscription = Inscriptions::All();
+        $inscription = \App\Inscriptions::orderBy('created_at', 'DESC')->get();
+        return view('inscriptions.index', compact('inscription'));
     }
 
     /**
@@ -26,7 +27,7 @@ class InscriptionsController extends Controller
     public function create()
     {
         $student = \App\Student::pluck('name','id');
-        $academic__year = \App\Academic__year::pluck('name','id');
+        $academic__year = \App\Academic_Year::pluck('academic','id');
         return view('inscriptions.create', compact('student','academic__year'));
     }
 
@@ -38,7 +39,7 @@ class InscriptionsController extends Controller
      */
     public function store(Request $request)
     {
-        $inscription = new Inscription();
+        $inscription = new Inscriptions();
         $inscription->date = $request->input('date');
         $inscription->amount = $request->input('amount');
         $inscription->student_id = $request->input('student_id');
@@ -67,9 +68,9 @@ class InscriptionsController extends Controller
      */
     public function edit($id)
     {
-        $inscription = \App\Inscription::find($id);//on recupere le produit);
+        $inscription = \App\Inscriptions::find($id);//on recupere le produit);
         $student = \App\Student::pluck('name','id');
-        $academic__year = \App\Academic__year::pluck('name','id');
+        $academic__year = \App\Academic__year::pluck('academic','id');
         return view('inscriptions.edit', compact('inscription','student','academic__year'));
 
     }
@@ -83,7 +84,7 @@ class InscriptionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $inscription = \App\Inscription::find($id);
+        $inscription = \App\Inscriptions::find($id);
         if($inscription){
             $inscription->update([
                 'date' => $request->input('date'),
