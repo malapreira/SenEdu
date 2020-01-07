@@ -14,9 +14,9 @@ class Academic_YearsController extends Controller
      */
     public function index()
     {
-        $academic_year = \App\Academic_Year::All();
+        $academic_year = Academic_Year::All();
         $academic_year = \App\Academic_Year::orderBy('created_at', 'DESC')->get();
-        return view('academic__year.index', compact('academic_year'));
+        return view('academic_year.index', compact('academic_year'));
     }
 
     /**
@@ -26,7 +26,7 @@ class Academic_YearsController extends Controller
      */
     public function create()
     {
-        return view('academic__year.create');
+        return view('academic_year.create');
     }
 
     /**
@@ -38,13 +38,11 @@ class Academic_YearsController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name'=>'required|min:5',
-            'description' => 'max:1000000'
+            'academic'=>'required|min:4',
         ]);
 
         $academic_year = new Academic_Year();
         $academic_year->academic = $request->input('academic');
-        $academic_year->description = $request->input('description');
         $academic_year->save();
         return redirect('/academic_year');
 
@@ -58,7 +56,8 @@ class Academic_YearsController extends Controller
      */
     public function show($id)
     {
-        //
+        $academic_year = \App\Academic_Year::findOrFail($id);
+        return view('academic_years.show',compact('academic_year'));
     }
 
     /**
@@ -69,8 +68,8 @@ class Academic_YearsController extends Controller
      */
     public function edit($id)
     {
-        $academic_year = \App\Academic_Year::find($id);
-        return view('academic_years.edit', compact('academic_year'));
+        $academic_year = \App\Academic_Year::findOrFail($id);
+        return view('academic_year.edit', compact('academic_year'));
         
     }
 
@@ -84,13 +83,13 @@ class Academic_YearsController extends Controller
     public function update(Request $request, $id)
     {
         $academic_year = \App\Academic_Year::find($id);
-        if($academic_year){
-            $academic_year->update([
-                'academic' => $request->input('academic'),
-                'description' => $request->input('description'),
-                ]);
+        $input = $request->all(); 
+
+        $update = $academic_year->update($input);
+    
+        if($update){
+            return redirect()->route('academic_years');
         }
-        return redirect()->back();
         
     }
 
@@ -102,6 +101,12 @@ class Academic_YearsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $academic_year = Academic_year::findOrFail($id);
+        //dd($matter);
+        $delete = $academic_year->delete();
+        
+        if($delete){
+            return redirect()->route('academic_years');
+        }
     }
 }

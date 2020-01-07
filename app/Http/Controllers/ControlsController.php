@@ -14,8 +14,8 @@ class ControlsController extends Controller
      */
     public function index()
     {
-        $controls = \App\Control::orderBy('created_at', 'DESC')->get();
-        return view('controls.index', compact('controls'));
+        $control = \App\Control::orderBy('created_at', 'DESC')->get();
+        return view('controls.index', compact('control'));
 
     }
 
@@ -40,7 +40,8 @@ class ControlsController extends Controller
         $control = new Control();
         $control->name = $request->input('name');
         $control->date = $request->input('date');
-        $control->time = $request->input('time');
+        $control->early_hour = $request->input('early_hour');
+        $control->end_hour = $request->input('end_hour');
         $control->save();
         return redirect('/control');
     }
@@ -53,7 +54,8 @@ class ControlsController extends Controller
      */
     public function show($id)
     {
-        //
+        $control = \App\Control::findOrfail($id);
+        return view('controls.show',compact('control'));
     }
 
     /**
@@ -78,18 +80,16 @@ class ControlsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $control = \App\Course::find($id);
-        if($control){
-            $control->update([
-                'name' => $request->input('date'),
-                'date' => $request->input('name'),
-                'time' => $request->input('time'),
-                ]);
+        $control = \App\Control::find($id);
+        $input = $request->all(); 
+
+        $update = $control->update($input);
+    
+        if($update){
+            return redirect()->route('controls');
         }
-        return redirect()->back();
-
+        
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -98,6 +98,12 @@ class ControlsController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $control = Control::findOrFail($id);
+        //dd($matter);
+        $delete = $control->delete();
+        
+        if($delete){
+            return redirect()->route('controls');
+        }
     }
 }

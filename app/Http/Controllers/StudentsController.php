@@ -64,7 +64,8 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = \App\Student::findOrfail($id);
+        return view('students.show',compact('student'));
     }
 
     /**
@@ -93,7 +94,15 @@ class StudentsController extends Controller
     public function update(Request $request, $id)
     {
         $student= \App\Student::find($id);
-        if($student) {
+        $input = $request->all(); 
+
+        $update = $student->update($input);
+    
+        if($update){
+            return redirect()->route('students');
+        }
+        
+        /*if($student) {
             $student->update([
                 'name' => $request->input('name'),
                 'first_name' => $request->input('first_name'),
@@ -110,7 +119,7 @@ class StudentsController extends Controller
         }
 
         return redirect()->back();
-
+        */
     }
 
 
@@ -122,6 +131,12 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        //dd($matter);
+        $delete = $student->delete();
+        
+        if($delete){
+            return redirect()->route('students');
+        }
     }
 }

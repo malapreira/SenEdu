@@ -58,7 +58,8 @@ class ClassroomsController extends Controller
      */
     public function show($id)
     {
-        //
+        $classroom = \App\Classroom::findOrfail($id);
+        return view('classrooms.show',compact('classroom'));
     }
 
     /**
@@ -86,16 +87,14 @@ class ClassroomsController extends Controller
     public function update(Request $request, $id)
     {
         $classroom = \App\Classroom::find($id);
-        if($classroom){
-            $classroom->update([
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                'filiere_id' => $request->input('filiere_id'),
-                'level_id' => $request->input('level_id'),
+        $input = $request->all(); 
 
-            ]);
+        $update = $classroom->update($input);
+    
+        if($update){
+            return redirect()->route('classrooms');
         }
-        return redirect()->back();
+        
     }
 
     /**
@@ -106,6 +105,12 @@ class ClassroomsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $classroom = Classroom::findOrFail($id);
+        //dd($matter);
+        $delete = $classroom->delete();
+        
+        if($delete){
+            return redirect()->route('classrooms');
+        }
     }
 }

@@ -52,7 +52,8 @@ class Teacher_typesController extends Controller
      */
     public function show($id)
     {
-        //
+        $teacher_type = \App\Teacher_type::findOrfail($id);
+        return view('teacher_types.show',compact('teacher_type'));
     }
 
     /**
@@ -77,13 +78,13 @@ class Teacher_typesController extends Controller
     public function update(Request $request, $id)
     {
         $teacher_type = \App\Teacher_type::find($id);
-        if($teacher_type){
-            $teacher_type->update([
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-            ]);
+        $input = $request->all(); 
+
+        $update = $teacher_type->update($input);
+    
+        if($update){
+            return redirect()->route('teacher_types');
         }
-        return redirect()->back();
     }
 
     /**
@@ -94,6 +95,12 @@ class Teacher_typesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $teacher_type = Teacher_type::findOrFail($id);
+        //dd($matter);
+        $delete = $teacher_type->delete();
+        
+        if($delete){
+            return redirect()->route('teacher_types');
+        }
     }
 }

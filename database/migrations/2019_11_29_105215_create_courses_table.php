@@ -17,6 +17,8 @@ class CreateCoursesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',100);
             $table->date('date',50);
+            $table->time('early_hour',6);
+            $table->time('end_hour',6);
             $table->string('description');
             $table->Integer('matter_id')->nullable();
             $table->Integer('classroom_id')->nullable();

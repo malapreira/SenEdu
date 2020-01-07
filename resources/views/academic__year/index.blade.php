@@ -3,7 +3,7 @@
 @section("contenu")
     <div class="dashboard-wrapper">
         <div class="container-fluid dashboard-content">
-            <div class="py-3 px-4 bg-blue-dark no-underline"><p><a href="{{route('academic_year.create')}}">{{('Ajouter une annee academique')}}</a></p></div>
+            <div class="py-3 px-4 bg-blue-dark no-underline"><p><a class="btn btn-primary btn-sm" href="{{route('academic_year.create')}}">{{('Ajouter une annee academique')}}</a></p></div>
             <table class="table table-bordered table-striped">
                       <tr>
                                <th>#</th>          <th>Annee Academique</th>                      <th></th>
@@ -13,7 +13,10 @@
                                        <th>#</th>
                                        <th>{{$academic_year->academic}}</th>
                                         <th>
-                                            <p><a href="{{route('edit_academic_year',['id'=>$academic_year->id])}}">Editer</a></p>
+                                            <div>
+                                                <a class="btn btn-primary btn-sm" href="{{route('edit_academic_year',['id'=>$academic_year->id])}}">Modifier</a>
+                                                <a class="btn btn-danger btn-sm" href="{{route('edit_academic_year',['id'=>$academic_year->id])}}">Suprimer</a>
+                                            </div>
                                         </th>
                                        <th></th>
                                    </tr>

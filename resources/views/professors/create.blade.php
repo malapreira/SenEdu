@@ -1,119 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends("acces")
 
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Colorlib Templates">
-    <meta name="author" content="Colorlib">
-    <meta name="keywords" content="Colorlib Templates">
-
-    <!-- Title Page-->
-    <title>Formulaire d'inscription parent d'élève</title>
-
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Main CSS-->
-    <link href="{{asset('css/main.css')}}" rel="stylesheet" media="all">
-</head>
-
-<body>
-<div class="page-wrapper bg-dark p-t-100 p-b-50">
-    <div class="wrapper wrapper--w900">
-        <div class="card card-6">
-            <div class="card-heading">
-                <h2 class="title">Formulaire d'incription</h2>
-            </div>
+@section("contenu")
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">        
+            <div><h2 class="title">Formulaire d'incription</h2></div>
             <div class="card-body">
-                <form action="{{route('professor.store')}}" id="formulaire" class="form-group" method="post">
-                    <div class="form-row">
-                        @csrf
-                        <div class="name">Nom:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="name" placeholder="Entrez votre nom">
-                        </div>
+                <form action="{{route('professor.store')}}" method="post">
+                @csrf@csrf
+                @method('patch')
+                @if($errors->any())
+                @foreach($errors->all() as $error)
+                <div class="alert alert-danger">{{$error}}</div>
+                @endforeach
+                @endif
+                <div>
+                    <input type="text" name="name" class="form-control col-8" placeholder="Entrez votre nom">
+                </div>
+                               
+                <div>
+                    <br><input type="text" name="first_name" class="form-control col-8" placeholder="Entrez votre Prenom">
+                </div>
+                <div>
+                    <br><input type="date" name="year_birth" class="form-control col-8" placeholder="Entrez votre date de naissance">
+                </div>
+                <div>
+                    <br><input type="text" name="Birth_Place" class="form-control col-8" placeholder="Entrez votre Lieu de naissance">
+                </div>
+                <div>
+                    <br><input type="text" name="Marital_status" class="form-control col-8" placeholder="Entrez votre statut">
+                </div>
+                <div>
+                    <br><input type="text" name="status" class="form-control col-8" placeholder="Entrez votre situation matrimoniale">
+                </div>
+                <div>
+                    <br><input type="text" name="address" class="form-control col-8" placeholder="Entrez votre adresse">
+                </div>
+                               
+                <div>
+                    <br><input type="text" name="phone" class="form-control col-8" placeholder="Entrez votre numero de téléphone">
+                </div>
+                <div>
+                    <br><input type="text" name="email" class="form-control col-8" placeholder="example@email.com"><br>
+                </div>
+                <div class="form-row">
+                    <div class="civility">Genre:</div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="civility" id="civilityF" value="0"/>
+                        <label class="form-check-label" for="civilityF">F</label>
                     </div>
-                    <div class="form-row">
-                        <div class="first_name">Prenom:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="first_name" placeholder="Entrez votre Prenom">
-                        </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="civility" id="civilityM" value="1"/>
+                        <label class="form-check-label" for="civilityM">M </label>
                     </div>
-                    <div class="form-row">
-                        <div class="year_birth">Date de naissance:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="year_birth" placeholder="Entrez votre date de naissance">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="birth_Place">Lieu de naissance:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="birth_Place" placeholder="Entrez votre Lieu de naissance">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="Marital_status">Situation matrimoniale:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="Marital_status" placeholder="Entrez votre situation matrimoniale">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="status">statut:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="status" placeholder="Entrez votre statut">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="address">Adresse:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="address" placeholder="Entrez votre Adresse">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="phone">Téléphone:</div>
-                        <div class="value">
-                            <input class="input--style-6" type="text" name="phone" placeholder="Entrez votre numero de téléphone">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="email">Email:</div>
-                        <div class="value">
-                            <div class="input-group">
-                                <input class="input--style-6" type="email" name="email" placeholder="example@email.com">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="civility">Genre:</div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="civility" id="civilityF" value="0"/>
-                            <label class="form-check-label" for="civilityF">F</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="civility" id="civilityM" value="1"/>
-                            <label class="form-check-label" for="civilityM">M </label>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn--radius-2 btn--blue-2 bg-blue-dark" type="submit">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div>
+                    <br><button class="btn btn-primary">Enregistrer</button>
+                </div>
+                <div>
+                    <br><select name="teacher_types_id" id="teacher_types_id" class="form-control col-8">
+                        <option value=""></option>
+                        @foreach($teacher_types as $key => $value)
+                        <option value="{{$key}}">{{$value}}</option>
 
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <br><select name="matters_id" id="matters_id" class="form-control col-8">
+                            <option value=""></option>
+                            @foreach($matter as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+
+                            @endforeach
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-<!-- Jquery JS-->
-<script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-
-
-<!-- Main JS-->
-<script src="{{asset('js/global.js')}}"></script>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-
-</html>
-<!-- end document-->
+@endsection

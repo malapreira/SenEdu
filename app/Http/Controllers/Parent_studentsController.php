@@ -26,7 +26,7 @@ class Parent_studentsController extends Controller
      */
     public function create()
     {
-        return view('parent_students.create');
+        return view('parent_students.create',compact('parent_student'));;
     }
 
     /**
@@ -42,7 +42,7 @@ class Parent_studentsController extends Controller
         $parent_student->first_name = $request->input('first_name');
         $parent_student->civility = $request->input('civility');
         $parent_student->year_birth = date('Y-m-d H:i:s', strtotime($request->input('year_birth')));
-        $parent_student->Birth_Place = $request->input('birth_Place');
+        $parent_student->Birth_Place = $request->input('Birth_Place');
         $parent_student->Marital_status = $request->input('Marital_status');
         $parent_student->status = $request->input('status');
         $parent_student->address = $request->input('address');
@@ -64,7 +64,8 @@ class Parent_studentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $parent_student = \App\parent_student::findOrfail($id);
+        return view('parent_students.show',compact('parent_student'));
     }
 
     /**
@@ -75,8 +76,8 @@ class Parent_studentsController extends Controller
      */
     public function edit($id)
     {
-        $parent_student = \App\Parent_student::find($id);
-        return  view('$parent_student.edit', compact('$parent_student'));
+        $parent_student = \App\parent_student::findOrfail($id);
+        return view('parent_students.edit',compact('parent_student'));
 
     }
 
@@ -89,22 +90,14 @@ class Parent_studentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $parent_student = \App\Parent_student::find($id);
-        if($parent_student){
-            $parent_student->update([
-                'name'=>$request->input('name'),
-                'first_name'=>$request->input('first_name'),
-                'civility'=>$request->input('civility'),
-                'year_birth'=>date('Y-m-d H:i:s', strtotime($request->input('year_birth'))),
-                'Birth_Place'=>$request->input('Birth_Place'),
-                'Marital_status'=>$request->input('Marital_status'),
-                'status'=>$request->input('status'),
-                'address'=>$request->input('address'),
-                'phone'=>$request->input('phone'),
-                'email'=>$request->input('email'),
-            ]);
+        $parent_student = \App\parent_student::find($id);
+        $input = $request->all(); 
+
+        $update = $parent_student->update($input);
+    
+        if($update){
+            return redirect()->route('parent_students');
         }
-        return redirect()->back();
     }
 
     /**
@@ -115,6 +108,12 @@ class Parent_studentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parent_student = parent_student::findOrFail($id);
+        //dd($matter);
+        $delete = $parent_student->delete();
+        
+        if($delete){
+            return redirect()->route('parent_students');
+        }
     }
 }

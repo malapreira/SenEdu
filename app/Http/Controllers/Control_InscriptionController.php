@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Control_inscription;
+use App\Control_Inscription;
 use Illuminate\Http\Request;
 
 class Control_InscriptionController extends Controller
@@ -14,9 +14,9 @@ class Control_InscriptionController extends Controller
      */
     public function index()
     {
-        $data = Control_Inscription::latest()->paginate(5);
-        return view('control_inscriptions.index', compact('data'))
-                ->with('i', (request()->input('page',1) - 1) * 5);
+        $control_inscription = \App\Control_Inscription::orderBy('created_at', 'DESC')->get();
+        return view('control_inscriptions.index', compact('control_inscription'));
+        
     }
 
     /**
@@ -26,7 +26,10 @@ class Control_InscriptionController extends Controller
      */
     public function create()
     {
-        return view('control_inscriptions.create');
+        $control = \App\Control::pluck('name','id');
+        $inscription = \App\Inscription::pluck('name','id');
+        return view('control_inscriptions.create', compact('control','inscription'));
+
     }
 
     /**
@@ -42,6 +45,15 @@ class Control_InscriptionController extends Controller
             'description' => 'max:100'
         ]);
 
+        $classroom = new Classroom();
+        $classroom->name = $request->input('name');
+        $classroom->description = $request->input('description');
+        $classroom->filiere_id = $request->input('filiere_id');
+        $classroom->level_id = $request->input('level_id');
+
+        $classroom->save();
+        return redirect('/classroom');
+
         control_inscription::create($request->all());
         return redirect('/control_inscription');
 
@@ -55,7 +67,8 @@ class Control_InscriptionController extends Controller
      */
     public function show($id)
     {
-        //
+        $control_inscription = \App\Control_Inscription::findOrfail($id);
+        return view('control_inscriptions.show',compact('control_inscription')); 
     }
 
     /**
@@ -66,7 +79,8 @@ class Control_InscriptionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $control_inscription = \App\Control_Inscription::findOrfail($id);
+        return view('control_inscriptions.edit',compact('control_inscription'));
     }
 
     /**
@@ -78,7 +92,15 @@ class Control_InscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $control_inscription = \App\Control_Inscription::find($id);
+        $input = $request->all(); 
+
+        $update = $control_inscription->update($input);
+    
+        if($update){
+            return redirect()->route('control_inscriptions');
+        }
+        
     }
 
     /**
@@ -89,6 +111,12 @@ class Control_InscriptionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $control_inscription = Control_Inscription::findOrFail($id);
+        //dd($matter);
+        $delete = $control_inscription->delete();
+        
+        if($delete){
+            return redirect()->route('control_inscriptions');
+        }
     }
 }

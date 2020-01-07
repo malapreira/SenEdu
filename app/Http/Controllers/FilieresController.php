@@ -14,8 +14,9 @@ class FilieresController extends Controller
      */
     public function index()
     {
+        $filieres = Filiere::All();
         $filiere = \App\Filiere::orderBy('created_at', 'DESC')->get();
-        return view('filieres.index', compact('filiere') );
+        return view('filieres.index', compact('filieres') );
     }
 
     /**
@@ -64,8 +65,9 @@ class FilieresController extends Controller
      */
     public function show($id)
     {
-        $filierer = \App\Filierer::find($id);;
-        return view('filierer.show', compact('filierer')); 
+        $filierer = \App\Filierer::findOrfail($id);;
+        return view('filieres.show', compact('filierer')); 
+
     }
 
     /**
@@ -76,9 +78,8 @@ class FilieresController extends Controller
      */
     public function edit($id)
     {
-        $filiere = \App\Filiere::find($id);;
-        return view('filiere.edit', compact('filiere'));
-
+        $filiere = \App\Filiere::findOrfail($id);;
+        return view('filieres.edit', compact('filiere'));
 
     }
 
@@ -92,14 +93,13 @@ class FilieresController extends Controller
     public function update(Request $request, $id)
     {
         $filiere = \App\Filiere::find($id);
-        if($filiere){
-            $filiere->update([
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-               ]);
-        }
-        return redirect()->back();
+        $input = $request->all(); 
 
+        $update = $filiere->update($input);
+    
+        if($update){
+            return redirect()->route('filieres');
+        }
     }
 
     /**
@@ -110,6 +110,13 @@ class FilieresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $filiere =Filiere::findOrFail($id);
+        //dd($matter);
+        $delete = $filiere->delete();
+        
+        if($delete){
+            return redirect()->route('filieres');
+        }
     }
 }
+

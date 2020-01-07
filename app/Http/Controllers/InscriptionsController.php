@@ -42,8 +42,8 @@ class InscriptionsController extends Controller
         $inscription = new Inscriptions();
         $inscription->date = $request->input('date');
         $inscription->amount = $request->input('amount');
-        $inscription->student_id = $request->input('student_id');
-        $inscription->academic__year_id = $request->input('academic__year_id');
+        $inscription->student_id = $request->input('students_id');
+        $inscription->academic__year_id = $request->input('academic__years_id');
 
         $inscription->save();
         return redirect('/inscription');
@@ -69,7 +69,7 @@ class InscriptionsController extends Controller
     public function edit($id)
     {
         $inscription = \App\Inscriptions::find($id);//on recupere le produit);
-        $student = \App\Student::pluck('name','id');
+        $student = \App\Student::pluck('name');
         $academic__year = \App\Academic__year::pluck('academic','id');
         return view('inscriptions.edit', compact('inscription','student','academic__year'));
 
@@ -89,8 +89,8 @@ class InscriptionsController extends Controller
             $inscription->update([
                 'date' => $request->input('date'),
                 'amount' => $request->input('amount'),
-                'student_id' => $request->input('student_id'),
-                'academic__year_id' => $request->input('academic__year_id'),
+                'student_id' => $request->input('students_id'),
+                'academic__year_id' => $request->input('academic__years_id'),
 
             ]);
         }

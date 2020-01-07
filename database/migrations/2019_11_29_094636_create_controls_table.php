@@ -17,7 +17,8 @@ class CreateControlsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',100);
             $table->date('date');
-            $table->time('time',6);
+            $table->time('early_hour',6);
+            $table->time('end_hour',6);
             $table->timestamps();
         });
     }

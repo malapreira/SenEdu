@@ -18,7 +18,6 @@ class EmployeesController extends Controller
         return view('employees.index', compact('employee') );
 
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +27,7 @@ class EmployeesController extends Controller
     public function create()
     {
         $service = \App\Service::pluck('name','id');
-        return view('employees.create', compact('service'));
+        return view('employees.create', compact('employee','service'));
     }
 
     /**
@@ -39,12 +38,6 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name'=>'required|min:5',
-            'price' => 'required|max:7|numeric',
-            'description' => 'max:1000000'
-        ]);
-
        $employee = new Employee();
         $employee->name = $request->input('name');
         $employee->first_name = $request->input('first_name');
@@ -73,7 +66,8 @@ class EmployeesController extends Controller
      */
     public function show($id)
     {
-        //
+        $employee = \App\Employee::findOrfail($id);
+        return view('employees.show',compact('employee'));
     }
 
     /**
@@ -84,10 +78,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $employee = \App\Employee::find($id);;
-        $service = \App\service::pluck('name','id');
+        $employee = \App\Employee::findOrfail($id);
+        $service = \App\Service::pluck('name','id');
         return view('employees.edit', compact('employee','service'));
-
     }
 
     /**
@@ -100,22 +93,13 @@ class EmployeesController extends Controller
     public function update(Request $request, $id)
     {
         $employee = \App\Employee::find($id);
-        if($employee){
-            $employee->update([
-                'name'=>$request->input('name'),
-                'first_name'=>$request->input('first_name'),
-                'year_birth'=>date('Y-m-d H:i:s', strtotime($request->input('year_birth'))),
-                'Birth_Place'=>$request->input('Birth_Place'),
-                'Marital_status'=>$request->input('Marital_status'),
-                'status'=>$request->input('status'),
-                'address'=>$request->input('address'),
-                'phone'=>$request->input('phone'),
-                'email'=>$request->input('email'),
-                'civility'=>$request->input('civility'),
-                'service_id' => $request->input('service_id'),
-           ]);
+        $input = $request->all(); 
+
+        $update = $employee->update($input);
+    
+        if($update){
+            return redirect()->route('employees');
         }
-        return redirect()->back();
    }
 
     /**
@@ -126,6 +110,12 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        //dd($matter);
+        $delete = $employee->delete();
+        
+        if($delete){
+            return redirect()->route('employees');
+        }
     }
 }

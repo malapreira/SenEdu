@@ -59,7 +59,8 @@ class MattersController extends Controller
      */
     public function show($id)
     {
-        //
+        $matter = \App\Matter::findOrfail($id);
+        return view('matters.show',compact('matter'));
     }
 
     /**
@@ -70,7 +71,8 @@ class MattersController extends Controller
      */
     public function edit($id)
     {
-        $matter = \App\Matter::find($id);
+        
+        $matter = \App\Matter::findOrfail($id);
         return view('matters.edit',compact('matter'));
 
     }
@@ -85,13 +87,14 @@ class MattersController extends Controller
     public function update(Request $request, $id)
     {
         $matter = \App\Matter::find($id);
-        if($matter){
-            $matter->update([
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                ]);
+        $input = $request->all(); 
+
+        $update = $matter->update($input);
+    
+        if($update){
+            return redirect()->route('matters');
         }
-        return redirect()->back();
+        
     }
 
     /**
@@ -102,6 +105,14 @@ class MattersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //dd($id);
+        $matter = Matter::findOrFail($id);
+        //dd($matter);
+        $delete = $matter->delete();
+        
+        if($delete){
+            return redirect()->route('matters');
+        }
     }
 }
+

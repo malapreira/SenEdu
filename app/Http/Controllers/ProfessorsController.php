@@ -13,6 +13,7 @@ class ProfessorsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        $professors = Professor::All();
         $professor = \App\Professor::orderBy('created_at', 'DESC')->get();
         return view('professors.index', compact('professor') );
     }
@@ -28,7 +29,7 @@ class ProfessorsController extends Controller
         $teacher_types = \App\Teacher_type::pluck('name','id');
         $matter = \App\Matter::pluck('name','id');
 
-        return view('professors.create',compact('teacher_types','matter'));
+        return view('professors.create',compact('professor','teacher_types','matter'));
     }
 
     /**
@@ -39,12 +40,6 @@ class ProfessorsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name'=>'required|min:5',
-            'price' => 'required|max:7|numeric',
-            'description' => 'max:1000000'
-        ]);
-
         $professor = new Professor();
         $professor->name = $request->input('name');
         $professor->first_name = $request->input('first_name');
@@ -72,7 +67,8 @@ class ProfessorsController extends Controller
      */
     public function show($id)
     {
-        //
+        $professor = \App\professor::findOrfail($id);
+        return view('professors.show',compact('professor'));
     }
 
     /**
@@ -83,7 +79,7 @@ class ProfessorsController extends Controller
      */
     public function edit($id)
     {
-        $professor = \App\Professor::find($id);
+        $professor = \App\Professor::findOrfail($id);
         $teacher_types = \App\Teacher_type::pluck('name','id');
         $matters = \App\Matter::pluck('name','id');
         return  view('professors.edit', compact('professor','teacher_type','matter'));
@@ -99,24 +95,13 @@ class ProfessorsController extends Controller
     public function update(Request $request, $id)
     {
         $professor = \App\Professor::find($id);
-        if($professor){
-            $professor->update([
-                'name'=>$request->input('name'),
-                'first_name'=>$request->input('first_name'),
-                'civility'=>$request->input('civility'),
-                'year_birth'=>date('Y-m-d H:i:s', strtotime($request->input('year_birth'))),
-                'Birth_Place'=>$request->input('Birth_Place'),
-                'Marital_status'=>$request->input('Marital_status'),
-                'status'=>$request->input('status'),
-                'address'=>$request->input('address'),
-                'phone'=>$request->input('phone'),
-                'email'=>$request->input('email'),
-                'teacher_type_id' => $request->input('teacher_type_id'),
-                'matter_id' => $request->input('matter_id'),
+        $input = $request->all(); 
 
-            ]);
+        $update = $professor->update($input);
+    
+        if($update){
+            return redirect()->route('professors');
         }
-        return redirect()->back();
     }
 
     /**
@@ -127,6 +112,12 @@ class ProfessorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $professor = Matter::findOrFail($id);
+        //dd($matter);
+        $delete = $professor->delete();
+        
+        if($delete){
+            return redirect()->route('professors');
+        }
     }
 }

@@ -44,6 +44,8 @@ class CoursesController extends Controller
         $course = new course();
         $course->name = $request->input('name');
         $course->date = date('Y-m-d H:i:s', strtotime($request->input('date')));
+        $course->early_hour = $request->input('early_hour');
+        $course->end_hour = $request->input('end_hour');
         $course->description = $request->input('description');
         $course->classroom_id = $request->input('classroom_id');
         $course->matter_id = $request->input('matter_id');
@@ -60,7 +62,8 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = \App\course::findOrfail($id);
+        return view('courses.show',compact('course'));
     }
 
     /**
@@ -88,20 +91,14 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $course = \App\Course::find($id);
-        if($course){
-            $course->update([
-                'name' => $request->input('name'),
-                'date' => date('Y-m-d H:i:s', strtotime($request->input('date'))),
-                'description' => $request->input('description'),
-                'classroom_id' => $request->input('classroom_id'),
-                'matter_id' => $request->input('matter_id'),
-                'professor_id' => $request->input('professor_id'),
+        $course = \App\course::find($id);
+        $input = $request->all(); 
 
-            ]);
+        $update = $course->update($input);
+    
+        if($update){
+            return redirect()->route('courses');
         }
-        return redirect()->back();
-
     }
 
     /**
@@ -112,6 +109,13 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = course::findOrFail($id);
+        //dd($matter);
+        $delete = $course->delete();
+        
+        if($delete){
+            return redirect()->route('courses');
+        }
     }
 }
+

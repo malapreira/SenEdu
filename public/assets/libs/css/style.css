@@ -2421,7 +2421,6 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 .product-colors input[type=checkbox], input[type=radio] {
     box-sizing: border-box;
     padding: 0;
-    display: none;
 }
 .product-description{}
 
@@ -4495,7 +4494,7 @@ Pills vertical
 
 .table {
     margin-bottom: 0px;
-    background-color: #00a28a;
+
 }
 
 .table td,
@@ -4527,7 +4526,7 @@ Pills vertical
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(230, 230, 242, .5);
+    background-color: #0ba5e2(106, 227, 243, 0.5);
 }
 
 .table-hover tbody tr:hover {

@@ -2,6 +2,9 @@
 
 @section("contenu")
 
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+ 
 
     <div class="container">
         <div class="row">
@@ -21,10 +24,10 @@
                     <strong>Notes :</strong>
                     <input type="text" name="note" class="form-control" placeholder="Entrer une note">
                 </div>
-                <div class="col-md-12">
-                    <a href="{{route('control_inscription.index')}}" class="btn btn-sm btn-success">Retour</a>
+                <div>
+                    <br><a href="{{route('control_inscription.index')}}" class="btn btn-sm btn-danger">Annuler</a>
+                    <button class="btn btn-success">Enregistrer</button>
                 </div>
-                <button type="submit" class="btn btn-sm btn-primary">Valider</button>
             </div>
         </form>
 

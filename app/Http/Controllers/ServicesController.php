@@ -61,7 +61,8 @@ class ServicesController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = \App\Servicer::findOrfail($id);
+        return view('services.show',compact('service'));
     }
 
     /**
@@ -72,9 +73,8 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        $service = \App\Service::find($id);//on recupere le service
+        $service = \App\Service::findOrfail($id);;//on recupere le service
         return view('services.edit', compact('service'));
-
 
     }
 
@@ -88,14 +88,13 @@ class ServicesController extends Controller
     public function update(Request $request, $id)
     {
         $service = \App\Service::find($id);
-        if($service){
-            $service->update([
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                ]);
+        $input = $request->all(); 
 
+        $update = $service->update($input);
+    
+        if($update){
+            return redirect()->route('services');
         }
-        return redirect()->back();
 
     }
 
@@ -107,6 +106,12 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        //dd($matter);
+        $delete = $service->delete();
+        
+        if($delete){
+            return redirect()->route('services');
+        }
     }
 }

@@ -14,8 +14,9 @@ class LevelsController extends Controller
      */
     public function index()
     {
-        $level = \App\Level::orderBy('created_at', 'DESC')->get();
-        return view('levels.index', compact('level') );
+        $levels = Level::All();   
+        $levels = \App\Level::orderBy('created_at', 'DESC')->get();
+        return view('levels.index', compact('levels'));
     }
 
     /**
@@ -56,7 +57,8 @@ class LevelsController extends Controller
      */
     public function show($id)
     {
-        //
+        $level = \App\Level::findOrfail($id);
+        return view('levels.show',compact('level'));
     }
 
     /**
@@ -67,8 +69,8 @@ class LevelsController extends Controller
      */
     public function edit($id)
     {
-        $level = \App\Level::find($id);
-        return view('levels.edit');
+        $level = \App\Level::findOrfail($id);
+        return view('levels.edit',compact('level'));
 
     }
 
@@ -82,14 +84,13 @@ class LevelsController extends Controller
     public function update(Request $request, $id)
     {
         $level = \App\Level::find($id);
-        if($level){
-            $level->update([
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                ]);
-        }
+        $input = $request->all(); 
 
-        return redirect()->back();
+        $update = $level->update($input);
+    
+        if($update){
+            return redirect()->route('levels');
+        }
     }
 
     /**
@@ -100,6 +101,12 @@ class LevelsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $level = Level::findOrFail($id);
+        //dd($matter);
+        $delete = $level->delete();
+        
+        if($delete){
+            return redirect()->route('levels');
+        }
     }
 }
